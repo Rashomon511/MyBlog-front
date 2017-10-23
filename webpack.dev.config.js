@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 
 module.exports = {
@@ -14,12 +15,12 @@ module.exports = {
     },//打包输出文件
     module: {
         rules: [{
-            test: /\.css$/,
+            test: /\.less$/,
             use: ExtractTextPlugin.extract({
-                fallback: "style-loader",//编译后用什么loader来提取css文件
-                use: "css-loader"//指需要什么样的loader去编译文件,这里由于源文件是.css所以选择css-loader
+                fallback: 'style-loader',
+                use: ['css-loader', 'less-loader']
             })
-        },//加载css
+        },//加载less
             {
                 test: /\.(js|jsx)$/,
                 use: {
@@ -35,17 +36,6 @@ module.exports = {
                     }
                 }
             },//加载js/jsx
-            {
-                test: /\.less$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "less-loader"
-                }
-                ]
-            },//加载less
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [
@@ -64,15 +54,22 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.json', '.jsx']
+        extensions: ['.js', '.json', '.jsx', '.less']
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("development")
+            }
+        }),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
+            filename: 'index.html',
             template: 'public/index.html'
         }),//生成一个新的html文件替换原有文件
         new webpack.HotModuleReplacementPlugin(),//模块热替换
-        new ExtractTextPlugin("styles.css")//抽离css
+        new ExtractTextPlugin("styles.css"),//抽离css
+        new ProgressBarPlugin()//打包进度条
     ],//插件
     target: 'web'
 };

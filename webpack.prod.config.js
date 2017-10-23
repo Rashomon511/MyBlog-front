@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-moudle.exports ={
+module.exports = {
     entry: {
         client: path.resolve(__dirname, 'src/index'),
         vendor: ['babel-polyfill', 'react', 'react-dom', 'react-redux', 'react-router', 'redux', 'redux-persist', 'redux-thunk']
@@ -35,7 +35,7 @@ moudle.exports ={
                     loader: 'babel-loader',
                     options: {
                         presets: ['es2015', 'react', 'stage-0'],
-                        plugins: ['add-module-exports','transform-object-assign',
+                        plugins: ['add-module-exports', 'transform-object-assign',
                             ['import', {
                                 'libraryName': 'antd',
                                 'style': 'css'
@@ -45,14 +45,19 @@ moudle.exports ={
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'less-loader']
                 })
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: ['file-loader']
+            },//加载字体
         ]
-    },resolve: {
+    },
+    resolve: {
         extensions: ['.js', '.json', '.jsx']
     },
     plugins: [
@@ -72,11 +77,5 @@ moudle.exports ={
         new ExtractTextPlugin("styles.css"),
         new ProgressBarPlugin()
     ],
-    node: {
-        dgram: 'empty',
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
-    },
     target: 'web'
-}
+};
