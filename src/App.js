@@ -5,6 +5,9 @@ class App extends Component{
         return (
             <div>
                 {this.props.children}
+                <div class="layout-copy">
+                    2017- &copy; Rashomon
+                </div>
             </div>
         );
     }
