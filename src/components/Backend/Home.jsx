@@ -6,6 +6,7 @@ class Home extends React.Component {
         super();
         this.state = {}
     }
+    static propTypes = {};
 
     static contextTypes = {
         router: PropTypes.object
@@ -14,7 +15,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                222
+                222ww22w
             </div>
         );
     }
