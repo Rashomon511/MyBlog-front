@@ -48,8 +48,14 @@ module.exports = {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader']
-                })
+                    use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\""
+                }),
+                exclude: /node_modules/
+            },//加载less
+            {
+                test: /\.css$/,
+                include: /node_modules/,
+                loader:'style-loader!css-loader'
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,

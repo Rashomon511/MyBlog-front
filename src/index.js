@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import store from './store';
-import './stylesheets/index.less';
 import App from './App';
 import Index from './containers/Blog/index';
 import Home from './containers/Backend/Home'

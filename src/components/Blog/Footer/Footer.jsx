@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
-import Footer from '../../containers/Blog/Footer';
+import style from './Footer.less'
 
-class Content extends React.Component {
+class Footer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -10,12 +10,11 @@ class Content extends React.Component {
 
     render() {
         return (
-            <div>
-                ddd33
-                <Footer/>
+            <div className={style.layoutCopy}>
+                2017- &copy; Rashomon
             </div>
         )
     }
 }
 
-export default Content;
+export default Footer;

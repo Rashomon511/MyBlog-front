@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SideBar from './SideBar';
+import SideBar from './SideBar/SideBar';
 import Content from '../../containers/Blog/Content';
+
 
 class Index extends React.Component {
     constructor() {
