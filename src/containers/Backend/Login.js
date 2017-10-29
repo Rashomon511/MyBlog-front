@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Login from '../../components/Backend/Login/Login';
+import AboutMe from '../../components/Backend/AboutMe/AboutMe';
 
 function mapStateToProps() {
     return {};
@@ -10,4 +10,4 @@ function mapDispatchToProps() {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(AboutMe);
