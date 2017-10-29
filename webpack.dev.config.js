@@ -28,6 +28,11 @@ module.exports = {
                 loader:'style-loader!css-loader'
             },
             {
+                test: /\.less$/,
+                include: path.resolve(__dirname, 'src/stylesheets'),
+                use: ["style-loader", 'css-loader', "postcss-loader", "less-loader"]
+            },
+            {
                 test: /\.(js|jsx)$/,
                 use: {
                     loader: "babel-loader",//将es6编译为es5
@@ -73,10 +78,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'public/index.html'
-        }),//生成一个新的html文件替换原有文件
+        }),
         new webpack.HotModuleReplacementPlugin(),//模块热替换
         new ExtractTextPlugin("styles.css"),//抽离css
         new ProgressBarPlugin()//打包进度条
-    ],//插件
+    ],
     target: 'web'
 };
