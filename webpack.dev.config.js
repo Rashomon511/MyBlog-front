@@ -13,6 +13,11 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'), //输出路劲
         publicPath: "/"
     },//打包输出文件
+    devServer: {
+        historyApiFallback:{
+            index:''
+        },
+    },
     module: {
         rules: [{
             test: /\.less$/,
