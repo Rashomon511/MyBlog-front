@@ -21,6 +21,10 @@ module.exports = {
     module: {
         rules: [{
             test: /\.less$/,
+            include: path.resolve(__dirname, 'src/stylesheets'),
+            loader:'style-loader!css-loader'
+        },{
+            test: /\.less$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\""
@@ -31,11 +35,6 @@ module.exports = {
                 test: /\.css$/,
                 include: /node_modules/,
                 loader:'style-loader!css-loader'
-            },
-            {
-                test: /\.less$/,
-                include: path.resolve(__dirname, 'src/stylesheets'),
-                use: ["style-loader", 'css-loader', "postcss-loader", "less-loader"]
             },
             {
                 test: /\.(js|jsx)$/,
