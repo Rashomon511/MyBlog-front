@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
+const extractLESSOne = new ExtractTextPlugin('stylesheets/[name]-one.css');
+const extractLESSTwo = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
 module.exports = {
     entry: [path.resolve(__dirname, './src/index.js')],//打包入口文件
@@ -21,15 +23,18 @@ module.exports = {
     module: {
         rules: [{
             test: /\.less$/,
-            include: path.resolve(__dirname, 'src/stylesheets'),
-            loader:'style-loader!css-loader'
-        },{
-            test: /\.less$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\""
             }),
             exclude: /node_modules/
+        },{
+            test: /\.less$/,
+            include: path.resolve(__dirname, 'src/stylesheets/index.js'),
+            use: extractLESSTwo.extract({
+                fallback: 'style-loader',
+                use: 'less-loader!css-loader'
+            }),
         },//加载less
             {
                 test: /\.css$/,
@@ -84,7 +89,8 @@ module.exports = {
             template: 'public/index.html'
         }),
         new webpack.HotModuleReplacementPlugin(),//模块热替换
-        new ExtractTextPlugin("styles.css"),//抽离css
+        extractLESSOne,
+        extractLESSTwo,
         new ProgressBarPlugin()//打包进度条
     ],
     target: 'web'

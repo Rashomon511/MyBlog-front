@@ -7,6 +7,7 @@ import App from './App';
 import Index from './containers/Blog/index';
 import Home from './containers/Backend/Home';
 import Login from './containers/Backend/Login';
+import './stylesheets/index.js';
 
 const routes = (
     <Provider store={store}>
