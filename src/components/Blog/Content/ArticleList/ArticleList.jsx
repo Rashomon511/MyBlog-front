@@ -1,6 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
-import style from './ArticleList.less'
+import style from './ArticleList.less';
+import Footer from '../Footer/Footer';
 
 class ArticleList extends React.Component {
     constructor(props) {
@@ -10,8 +11,9 @@ class ArticleList extends React.Component {
 
     render() {
         return (
-            <div>
-                2017- &copy; Rashomon
+            <div className={style.wrap}>
+                <div className={style.articleList}>dddd</div>
+                <Footer/>
             </div>
         )
     }

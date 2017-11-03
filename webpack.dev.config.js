@@ -21,6 +21,10 @@ module.exports = {
     module: {
         rules: [{
             test: /\.less$/,
+/*            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\"",
+            }),*/
             loaders: [
                 'style-loader',
                 "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\"",
@@ -29,10 +33,7 @@ module.exports = {
         },{
             test: /\.less$/,
             include: path.resolve(__dirname, 'src/stylesheets/index.js'),
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: 'less-loader!css-loader'
-            }),
+            use: ["style-loader", 'css-loader', "postcss-loader", "less-loader"]
         },//加载less
             {
                 test: /\.css$/,
@@ -87,7 +88,7 @@ module.exports = {
             template: 'public/index.html'
         }),
         new webpack.HotModuleReplacementPlugin(),//模块热替换
-        new ExtractTextPlugin('style.css'),
+        new ExtractTextPlugin('style.css', { allChunks: true }),
         new ProgressBarPlugin()//打包进度条
     ],
     target: 'web'

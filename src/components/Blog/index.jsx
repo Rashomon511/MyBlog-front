@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideBar from './SideBar/SideBar';
-import Content from '../../containers/Blog/Content';
-
+import style from './index.less';
 
 class Index extends React.Component {
     constructor() {
@@ -10,20 +8,11 @@ class Index extends React.Component {
         this.state = {}
     }
 
-    static contextTypes = {
-        router: PropTypes.object
-    };
-
-    click = () => {
-        this.context.router.push('/home')
-    }
-
     render() {
         return (
-            <div>
+            <div className={style.wrap}>
                 <SideBar/>
-                <Content/>
-                <a onClick={this.click}>sss</a>
+                <div className={style.main}>{this.props.children}</div>
             </div>
         );
     }

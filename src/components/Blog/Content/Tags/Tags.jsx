@@ -1,6 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
-import style from './Tags.less'
+import style from './Tags.less';
+import Footer from '../Footer/Footer';
 
 class Tags extends React.Component {
     constructor(props) {
@@ -10,8 +11,9 @@ class Tags extends React.Component {
 
     render() {
         return (
-            <div>
-                2017- &copy; Rashomon
+            <div className={style.wrap}>
+                <div className={style.tags}>tagsddddd</div>
+                <Footer/>
             </div>
         )
     }
