@@ -1,6 +1,5 @@
 import React from 'react';
-import PropType from 'prop-types';
-import {Button} from 'antd'
+import {Button,Avatar} from 'antd'
 import style from './SideBar.less';
 
 class SideBar extends React.Component {
@@ -13,7 +12,7 @@ class SideBar extends React.Component {
         return (
             <div className={style.wrap}>
                 <div className={style.avatar}>
-                    <img/>
+                    <Avatar/>
                 </div>
                 <div className={style.resume}>
                     名字

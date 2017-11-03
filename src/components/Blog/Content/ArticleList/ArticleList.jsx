@@ -1,5 +1,4 @@
 import React from 'react';
-import PropType from 'prop-types';
 import style from './ArticleList.less';
 import Footer from '../Footer/Footer';
 
