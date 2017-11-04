@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
   display: flex;
   flex-direction: column;
   background: #252525;
@@ -15,20 +15,49 @@
   z-index: 100;
   filter: drop-shadow(16px 16px 10px rgba(0, 0, 0, .9));
 }
-.avatar{
+
+.avatarWrap {
   height: 6rem;
-flex:1
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-.resume{
-  height:6rem;
-flex:1
+
+.avatar {
+  width: 13rem;
+  height: 13rem;
+  background-image: url("../../../assets/logo.jpg");
+  background-size: 13rem 13rem;
+  border-radius: 50%;
+  align-self:center;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
 }
-.routeBtn{
+.text{
+  flex:1;
+  font-family: "Microsoft YaHei";
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+}
+.address{
+  flex:1;
+}
+
+
+.resume {
   height: 6rem;
-flex:1
 }
-@media screen and (max-width:1080px){
-  .wrap{
+
+.routeBtn {
+  height: 6rem;
+  flex: 1
+}
+
+@media screen and (max-width: 1080px) {
+  .wrap {
 
   }
 }
