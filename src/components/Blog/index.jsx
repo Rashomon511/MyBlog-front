@@ -12,7 +12,9 @@ class Index extends React.Component {
         return (
             <div className={style.wrap}>
                 <SideBar/>
-                <div className={style.main}>{this.props.children}</div>
+                <div className={style.main}>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

@@ -8,6 +8,8 @@ import Index from './containers/Blog/index';
 import Tags from './containers/Blog/Tags';
 import AboutMe from './containers/Blog/Resume';
 import ArticleList from './containers/Blog/ArticleList';
+import TagList from './containers/Blog/TagList';
+import ArticleContent from './containers/Blog/ArticleContent';
 import Home from './containers/Backend/Home';
 import Login from './containers/Backend/Login';
 import './stylesheets/index.js';
@@ -22,6 +24,8 @@ const routes = (
                     <Route path='article' component={ArticleList}/>
                     <Route path='tags' component={Tags}/>
                     <Route path='resume' component={AboutMe}/>
+                    <Route path='tagList' component={TagList}/>
+                    <Route path='showArticle' component={ArticleContent}/>
                 </Route>
                 <Route path="login" component={Login}/>
                 <Route path="home" component={Home}/>

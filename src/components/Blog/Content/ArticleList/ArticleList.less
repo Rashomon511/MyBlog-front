@@ -1,15 +1,24 @@
 .wrap {
   display: flex;
   flex-direction: column;
-
   -ms-flex: 1;
   flex: 1;
   display: -ms-flexbox;
   -ms-flex-direction: column;
 }
 
-.articleList {
+.articleWrap {
   display: flex;
   flex: 1;
+  overflow-y: auto;
   padding-bottom: 4rem;
+  position: relative;
+}
+
+
+.articleList {
+  width: calc(100% - 200px);
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 2rem;
 }

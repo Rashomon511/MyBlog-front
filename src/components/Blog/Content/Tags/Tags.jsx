@@ -12,7 +12,12 @@ class Tags extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
-                <div className={style.tags}>tagsddddd</div>
+                <div className={style.tagWrap}>
+                    <div className={style.tags}>
+                        <p className={style.title}>Tags</p>
+                        <hr/>
+                    </div>
+                </div>
                 <Footer/>
             </div>
         )

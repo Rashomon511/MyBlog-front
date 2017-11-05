@@ -1,5 +1,4 @@
 import React from 'react';
-import PropType from 'prop-types';
 import style from './AboutMe.less';
 import Footer from '../Footer/Footer';
 
@@ -12,7 +11,12 @@ class AboutMe extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
-                <div className={style.resume}>aboutMe</div>
+                <div className={style.resumeWrap}>
+                    <div className={style.resume}>
+                        <p className={style.title}>AboutMe</p>
+                        <hr/>
+                    </div>
+                </div>
                 <Footer/>
             </div>
         )
