@@ -1,19 +1,21 @@
-.app{
+.app {
   min-height: 100vh;
   flex-direction: column;
   -ms-flex-direction: column;
   display: -ms-flexbox;
   display: flex;
 }
-.wrap{
-    min-height: 100vh;
-    flex-direction: column;
-    -ms-flex-direction: column;
-    display: -ms-flexbox;
-    display: flex;
+
+.wrap {
+  min-height: 100vh;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
 }
 
-.main{
+.main {
   padding-left: 32rem;
   -ms-flex: 1;
   flex: 1;
@@ -21,4 +23,7 @@
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
+  height: calc(100vh - 40px);
+  overflow: auto;
 }
+.main::-webkit-scrollbar {display:none}
