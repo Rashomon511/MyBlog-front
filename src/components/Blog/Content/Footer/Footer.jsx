@@ -11,7 +11,7 @@ class Footer extends React.Component {
     render() {
         return (
             <div className={style.layoutCopy}>
-                2017- &copy; Rashomon
+                <div className={style.layout}>2017- &copy; Rashomon</div>
             </div>
         )
     }
