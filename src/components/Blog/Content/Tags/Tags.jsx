@@ -12,6 +12,7 @@ class Tags extends React.Component {
             <div className={style.tags}>
                 <p className={style.title}>Tags</p>
                 <hr/>
+
             </div>
         )
     }

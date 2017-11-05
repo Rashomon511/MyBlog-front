@@ -9,8 +9,10 @@ class TagList extends React.Component {
 
     render() {
         return (
-            <div>
-                dsdd
+            <div className={style.tags}>
+                <p className={style.title}>Tags</p>
+                <hr/>
+                <span>list</span>
             </div>
         )
     }

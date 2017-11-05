@@ -9,8 +9,10 @@ class ArticleContent extends React.Component {
 
     render() {
         return (
-            <div>
-                content
+            <div className={style.tags}>
+                <p className={style.title}>content</p>
+                <hr/>
+                <span>content</span>
             </div>
         )
     }
