@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
-import style from './ArticleMange.less'
+import style from './ArticleManage.less'
 
-class ArticleMange extends React.Component {
+class ArticleManage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -11,10 +11,10 @@ class ArticleMange extends React.Component {
     render() {
         return (
             <div>
-                2017- &copy; Rashomon
+               articleManage
             </div>
         )
     }
 }
 
-export default ArticleMange;
+export default ArticleManage;

@@ -11,7 +11,7 @@ class AboutMe extends React.Component {
     render() {
         return (
             <div>
-                2017- &copy; Rashomon
+                about
             </div>
         )
     }

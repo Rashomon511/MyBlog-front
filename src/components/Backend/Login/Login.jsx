@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Icon, Input, Button} from 'antd';
+import style from './Login.less'
 
 const FormItem = Form.Item;
 
@@ -20,55 +21,34 @@ class LoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(222)
+                this.context.router.push('/home')
             }
         });
     };
 
     render() {
         const {getFieldDecorator} = this.props.form;
-        const {isDisabled} = this.state;
-        const formItemLayout = {
-            labelCol: {
-                xs: {span: 24},
-                sm: {span: 6},
-            },
-            wrapperCol: {
-                xs: {span: 24},
-                sm: {span: 14},
-            },
-        };
-
-
-
         return (
-            <div className="account-wrap">
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <FormItem {...formItemLayout}>
+            <div>
+                <Form onSubmit={this.handleSubmit} className={style.loginForm}>
+                    <FormItem>
                         {getFieldDecorator('userName', {
-                            rules: [{
-                                required: true,
-                            }],
+                            rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                            <Input placeholder="请输入用户名！"  prefix={<Icon type="user" style={{fontSize: 13}}/>}
-                                   style={{width: '100%'}} onChange={this.onChang}/>
+                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
                         )}
                     </FormItem>
                     <FormItem>
                         {getFieldDecorator('password', {
-                            rules: [{required: true,}],
+                            rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
-                                   placeholder="请输入密码！" style={{width: '100%'}} onChange={this.onChang}/>
+                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
                         )}
                     </FormItem>
                     <FormItem>
-                        <div>
-                            <Button type="primary" htmlType="submit" className="login-form-button"
-                                    disabled={isDisabled}>
-                                登录
-                            </Button>
-                        </div>
+                        <Button type="primary" htmlType="submit" className={style.loginFormButton}>
+                            登陆
+                        </Button>
                     </FormItem>
                 </Form>
             </div>

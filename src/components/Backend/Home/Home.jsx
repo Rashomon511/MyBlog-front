@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon } from 'antd';
-const { Header, Sider, Content } = Layout;
+import {Layout, Menu, Icon} from 'antd';
+const {Header, Sider, Content} = Layout;
+import style from './Home.less'
 
 class Home extends React.Component {
     constructor() {
@@ -10,6 +11,7 @@ class Home extends React.Component {
             collapsed: false,
         }
     }
+
     static propTypes = {};
 
     static contextTypes = {
@@ -20,7 +22,29 @@ class Home extends React.Component {
         this.setState({
             collapsed: !this.state.collapsed,
         });
-    }
+    };
+
+    Click=(clicked)=>{
+        switch (clicked.key) {
+            case '1' :
+                this.context.router.push('/home/newArticle');
+                break;
+            case '2' :
+                this.context.router.push('/home/articleMge');
+                break;
+            case '3' :
+                this.context.router.push('/home/msgManage');
+                break;
+            case '4' :
+                this.context.router.push('/home/TagsMge');
+                break;
+            case '5' :
+                this.context.router.push('/home/resume');
+                break;
+            default:
+                return this.context.router.push('/home');
+        }
+    };
 
     render() {
         return (
@@ -30,40 +54,40 @@ class Home extends React.Component {
                     collapsible
                     collapsed={this.state.collapsed}
                 >
-                    <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <div className={style.logo}/>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={this.Click}>
                         <Menu.Item key="1">
-                            <Icon type="user" />
+                            <Icon type="user"/>
                             <span>新建文章</span>
                         </Menu.Item>
                         <Menu.Item key="2">
-                            <Icon type="video-camera" />
+                            <Icon type="video-camera"/>
                             <span>文章管理</span>
                         </Menu.Item>
                         <Menu.Item key="3">
-                            <Icon type="upload" />
+                            <Icon type="upload"/>
                             <span>留言管理</span>
                         </Menu.Item>
                         <Menu.Item key="4">
-                            <Icon type="upload" />
+                            <Icon type="upload"/>
                             <span>标签管理</span>
                         </Menu.Item>
                         <Menu.Item key="5">
-                            <Icon type="upload" />
-                            <span>关于我</span>
+                            <Icon type="upload"/>
+                            <span>我的简历</span>
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
+                    <Header style={{background: '#fff', padding: 0}}>
                         <Icon
-                            className="trigger"
+                            className={style.trigger}
                             type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={this.toggle}
                         />
                     </Header>
-                    <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-                        Content
+                    <Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
+                        {this.props.children}
                     </Content>
                 </Layout>
             </Layout>

@@ -10,8 +10,13 @@ import AboutMe from './containers/Blog/Resume';
 import ArticleList from './containers/Blog/ArticleList';
 import TagList from './containers/Blog/TagList';
 import ArticleContent from './containers/Blog/ArticleContent';
-import Home from './containers/Backend/Home';
 import Login from './containers/Backend/Login';
+import Home from './containers/Backend/Home';
+import Resume from './containers/Backend/Resume';
+import ArticleManage from './containers/Backend/ArticleManage';
+import NewArticle from './containers/Backend/NewArticle';
+import TagsManage from './containers/Backend/TagsManage';
+import MsgManage from './containers/Backend/MsgManage';
 import './stylesheets/index.js';
 
 const routes = (
@@ -28,7 +33,13 @@ const routes = (
                     <Route path='showArticle' component={ArticleContent}/>
                 </Route>
                 <Route path="login" component={Login}/>
-                <Route path="home" component={Home}/>
+                <Route path="home" component={Home}>
+                    <Route path="resume" component={Resume}/>
+                    <Route path="articleMge" component={ArticleManage}/>
+                    <Route path="newArticle" component={NewArticle}/>
+                    <Route path="TagsMge" component={TagsManage}/>
+                    <Route path="msgManage" component={MsgManage}/>
+                </Route>
             </Route>
         </Router>
     </Provider>

@@ -11,7 +11,7 @@ class NewArticle extends React.Component {
     render() {
         return (
             <div>
-                2017- &copy; Rashomon
+               newArticle
             </div>
         )
     }

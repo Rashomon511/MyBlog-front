@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
-import style from './MsgMange.less'
+import style from './TagsManage.less'
 
-class MsgMange extends React.Component {
+class TagsManage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -11,10 +11,10 @@ class MsgMange extends React.Component {
     render() {
         return (
             <div>
-                2017- &copy; Rashomon
+                TagsManage
             </div>
         )
     }
 }
 
-export default MsgMange;
+export default TagsManage;
