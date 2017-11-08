@@ -68,6 +68,8 @@ class Home extends React.Component {
                     collapsed={this.state.collapsed}
                 >
                     <div className={style.logo}>
+                        <img src='../../src/assets/logo.jpg'/>
+                        <span className={style.title}>魑魅魍魉</span>
                     </div>
                     <div className={style.menu}>
                         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={this.Click}>
@@ -103,7 +105,7 @@ class Home extends React.Component {
                         />
                         <div className={style.right}>
                             <Dropdown overlay={menu}>
-                                <span className={`${style.action} ${style.account}`}>
+                                <span className={style.action}>
                                 <Avatar size="samll" className={style.avatar} src='../../src/assets/logo.jpg'/>
                                 <span>Roshomon</span>
                   </span>

@@ -54,7 +54,7 @@ class ArticleManage extends React.Component {
         return (
             <div>
                 <Table pagination={false} columns={columns} dataSource={data}/>
-                <Pagination defaultCurrent={1} total={50}/>
+                <Pagination defaultCurrent={1} total={50} sty/>
             </div>
         )
     }

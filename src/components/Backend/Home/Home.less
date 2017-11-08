@@ -18,6 +18,21 @@
   transition: all .3s;
   overflow: hidden;
 }
+.logo img{
+  display: inline-block;
+  vertical-align: middle;
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  margin-left: -13px;
+}
+.title{
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 15px;
+  font-family: "Microsoft YaHei";
+  text-align: center;
+}
 
 .right {
   float: right;
@@ -37,28 +52,24 @@
     }
     &:global(.ant-popover-open),
     &:hover {
-      background-color:aquamarine;
+      background-color: aquamarine;
     }
-    .avatar {
-      margin: 20px 8px 20px 0;
-      background: rgba(255, 255, 255, .85);
-      vertical-align: middle;
-    }
-  }
-  .account {
-    .avatar {
-      margin: 20px 8px 20px 0;
-      background: rgba(255, 255, 255, .85);
-      vertical-align: middle;
-    }
+
   }
 }
-.right:hover{
-  background-color:gainsboro;
+
+.avatar {
+  margin: 15px 10px 20px 0;
+  background: rgba(255, 255, 255, .85);
+  vertical-align: middle;
+}
+
+.right:hover {
+  color: #108ee9;
 }
 
 .menu {
-  margin-top:15px;
+  margin-top: 15px;
   :global(.anticon) {
     margin-right: 8px;
   }
