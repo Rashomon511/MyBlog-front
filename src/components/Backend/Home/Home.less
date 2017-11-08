@@ -11,17 +11,60 @@
 }
 
 .logo {
-  height: 85px;
-  background: #333;
-  border-radius: 6px;
-  text-align: center;
-  font-size: 12px;
-  font-family: "Microsoft YaHei";
+  height: 64px;
+  position: relative;
+  line-height: 64px;
+  padding-left: 24px;
+  transition: all .3s;
+  overflow: hidden;
 }
 
-.logo span {
-  margin-top: 40px;
-  display: inline-block;
+.right {
+  float: right;
+  height: 100%;
+  margin-right: 18px;
+  color: #565a5f;
+  cursor: pointer;
+  .action {
+    cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
+    transition: all .3s;
+    height: 100%;
+    > i {
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    &:global(.ant-popover-open),
+    &:hover {
+      background-color:aquamarine;
+    }
+    .avatar {
+      margin: 20px 8px 20px 0;
+      background: rgba(255, 255, 255, .85);
+      vertical-align: middle;
+    }
+  }
+  .account {
+    .avatar {
+      margin: 20px 8px 20px 0;
+      background: rgba(255, 255, 255, .85);
+      vertical-align: middle;
+    }
+  }
+}
+.right:hover{
+  background-color:gainsboro;
+}
+
+.menu {
+  margin-top:15px;
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    width: 160px;
+  }
 }
 
 .menu li {
