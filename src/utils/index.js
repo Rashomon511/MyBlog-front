@@ -7,7 +7,7 @@ const fetch = axios.create({
 
 fetch.interceptors.request.use(config => {
     // Do something before request is sent
-    config.headers['Content-Type'] = 'appliction/x-www-form-urlencoded'
+    config.headers['Content-Type'] = 'appliction/x-www-form-urlencoded';
     //config.headers['Authorization'] = getToken() // 让每个请求携带token--['Authorization']
     return config
 }, error => {
