@@ -53,6 +53,7 @@ class Home extends React.Component {
     };
 
     render() {
+        console.log(this.props.data)
         const menu = (
             <Menu className={style.menu} selectedKeys={[]} onClick={this.onMenuClick}>
                 <Menu.Item><Icon type="user"/>回到首页</Menu.Item>

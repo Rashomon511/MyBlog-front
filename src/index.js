@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
-import store from './store';
+//import store from './store';
 import App from './App';
 import Index from './containers/Blog/index';
 import Tags from './containers/Blog/Tags';
@@ -18,10 +18,10 @@ import NewArticle from './containers/Backend/NewArticle';
 import TagsManage from './containers/Backend/TagsManage';
 import MsgManage from './containers/Backend/MsgManage';
 import './stylesheets/index.js';
+// 第二种写法
+import {configureStore} from './store';
 
-// import {configureStore} from './store';
-// 第二种写发
-// const store = configureStore();
+const store = configureStore();
 
 const routes = (
     <Provider store={store}>

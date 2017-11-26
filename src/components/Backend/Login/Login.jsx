@@ -23,7 +23,8 @@ class LoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 handleLogin();
-                //this.context.router.push('/home')
+                console.log(111);
+                this.context.router.push('/home')
             }
         });
     };

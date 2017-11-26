@@ -1,7 +1,8 @@
 import {handleActions} from 'redux-actions';
 
 const initState = {
-    data:[]
+    data:[],
+    loginState: false
 };
 
 const reducer = handleActions({

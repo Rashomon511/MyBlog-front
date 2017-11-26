@@ -1,5 +1,5 @@
 import fetch from '../utils/index';
 
-export const GetUser = () => {
+export const login = () => {
     return fetch({url:'/user'})
 };

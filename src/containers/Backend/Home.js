@@ -1,8 +1,10 @@
 import {connect} from 'react-redux';
 import Home from '../../components/Backend/Home/Home';
 
-function mapStateToProps() {
-    return {};
+function mapStateToProps(state) {
+    return {
+        data: state.login.data
+    };
 }
 
 function mapDispatchToProps() {

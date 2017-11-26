@@ -1,5 +1,5 @@
 import {takeEvery, takeLatest} from 'redux-saga'
-import {put, call, select} from 'redux-saga/effects'
+import {put, call} from 'redux-saga/effects'
 import 'babel-polyfill';
 
 import {
@@ -7,18 +7,20 @@ import {
     REQUEST_SUCCESS,
     REQUEST_ERR
 } from '../action/actionType'
-import { GetUser } from "../controllers/index";
+import { login } from "../controllers/index";
 function* fetchLogin() {
     try {
-        const data = yield call(GetUser);
+        const data = yield call(login);
+        console.log('saga-fetch');
+        console.log(data);
         yield put({type: REQUEST_SUCCESS,payload:data})
     }
     catch (err){
-        yield  put({type: REQUEST_ERR, payload: false })
+        yield  put({type: REQUEST_ERR, payload: true })
     }
 
 }
 
 export function* watchLogin() {
-    yield takeLatest(REQUEST_LOGIN, fetchLogin);
+    yield takeEvery(REQUEST_LOGIN, fetchLogin);
 }
