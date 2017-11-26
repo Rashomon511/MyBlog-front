@@ -19,9 +19,11 @@ class LoginForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        const { handleLogin } = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.context.router.push('/home')
+                handleLogin();
+                //this.context.router.push('/home')
             }
         });
     };

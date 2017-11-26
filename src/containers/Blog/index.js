@@ -1,12 +1,15 @@
+
 import {connect} from 'react-redux';
 import Index from '../../components/Blog/index';
+
 
 function mapStateToProps() {
     return {};
 }
 
 function mapDispatchToProps() {
-    return {};
+    return {
+    };
 }
 
 

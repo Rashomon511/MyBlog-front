@@ -19,6 +19,10 @@ import TagsManage from './containers/Backend/TagsManage';
 import MsgManage from './containers/Backend/MsgManage';
 import './stylesheets/index.js';
 
+// import {configureStore} from './store';
+// 第二种写发
+// const store = configureStore();
+
 const routes = (
     <Provider store={store}>
         <Router history={browserHistory}>
