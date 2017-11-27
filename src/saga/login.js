@@ -1,17 +1,18 @@
-import {takeEvery, takeLatest} from 'redux-saga'
-import {put, call} from 'redux-saga/effects'
+import {takeEvery, takeLatest} from 'redux-saga';
+import {put, call} from 'redux-saga/effects';
 import 'babel-polyfill';
 
 import {
     REQUEST_LOGIN,
     REQUEST_SUCCESS,
-    REQUEST_ERR
+    REQUEST_ERR,
+    SAVE_TOKEN
 } from '../action/actionType'
 import { login } from "../controllers/index";
 function* fetchLogin(action) {
     try {
         const data = yield call(login,action.payload);
-        console.log(data);
+        yield put({type: SAVE_TOKEN,payload: data.data.token});
         yield put({type: REQUEST_SUCCESS,payload: true})
     }
     catch (err){

@@ -5,7 +5,8 @@ import { request_login } from '../../action/index';
 
 function mapStateToProps(state) {
     return {
-        loginState: state.login.loginState
+        loginState: state.login.loginState,
+        token: state.login.token
     };
 }
 

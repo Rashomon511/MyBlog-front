@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Icon, Input, Button} from 'antd';
+import Cookies from 'js-cookie'
 import style from './Login.less'
 
 const FormItem = Form.Item;
@@ -15,13 +16,13 @@ class LoginForm extends React.Component {
         router: PropTypes.object
     };
 
+    // 登陆完成获取token,并存储token,跳转页面
     componentWillReceiveProps(nextProps){
         if(nextProps.loginState === true){
+            Cookies.set('token',nextProps.token);
             this.context.router.push('/home')
         }
     }
-
-
 
     handleSubmit = (e) => {
         e.preventDefault();
