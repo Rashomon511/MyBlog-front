@@ -15,6 +15,12 @@ class LoginForm extends React.Component {
         router: PropTypes.object
     };
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.loginState === true){
+            this.context.router.push('/home')
+        }
+    }
+
 
 
     handleSubmit = (e) => {
@@ -22,9 +28,7 @@ class LoginForm extends React.Component {
         const { handleLogin } = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                handleLogin();
-                console.log(111);
-                this.context.router.push('/home')
+                handleLogin(values);
             }
         });
     };
@@ -38,14 +42,14 @@ class LoginForm extends React.Component {
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
+                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }}  />} placeholder="visitor" />
                         )}
                     </FormItem>
                     <FormItem>
                         {getFieldDecorator('password', {
                             rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
+                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="888888" />
                         )}
                     </FormItem>
                     <FormItem>

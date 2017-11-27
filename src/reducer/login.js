@@ -6,11 +6,11 @@ const initState = {
 };
 
 const reducer = handleActions({
-    REQUEST_LOGIN: (state) => ({
-        ...state
+    REQUEST_LOGIN: (state,action) => ({
+        ...state, data: action.payload
     }),
     REQUEST_SUCCESS: (state, action) => ({
-        ...state,data: action.payload
+        ...state,loginState: action.payload
     }),
     REQUEST_ERR: (state, action) => ({
         ...state,loginState: action.payload

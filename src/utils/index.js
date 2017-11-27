@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const fetch = axios.create({
-    baseURL: 'http://192.168.10.135:3001', // api的base_url
+    baseURL: 'http://192.168.0.104:3001', // api的base_url
     timeout: 500000                  // 请求超时时间
 })
 
 fetch.interceptors.request.use(config => {
     // Do something before request is sent
-    config.headers['Content-Type'] = 'appliction/x-www-form-urlencoded';
+    config.headers['Content-Type'] = 'application/json; charset=utf-8';
     //config.headers['Authorization'] = getToken() // 让每个请求携带token--['Authorization']
     return config
 }, error => {

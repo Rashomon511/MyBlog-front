@@ -3,8 +3,10 @@ import {connect} from 'react-redux';
 import Login from '../../components/Backend/Login/Login';
 import { request_login } from '../../action/index';
 
-function mapStateToProps() {
-    return {};
+function mapStateToProps(state) {
+    return {
+        loginState: state.login.loginState
+    };
 }
 
 function mapDispatchToProps(dispatch) {

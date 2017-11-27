@@ -8,15 +8,14 @@ import {
     REQUEST_ERR
 } from '../action/actionType'
 import { login } from "../controllers/index";
-function* fetchLogin() {
+function* fetchLogin(action) {
     try {
-        const data = yield call(login);
-        console.log('saga-fetch');
+        const data = yield call(login,action.payload);
         console.log(data);
-        yield put({type: REQUEST_SUCCESS,payload:data})
+        yield put({type: REQUEST_SUCCESS,payload: true})
     }
     catch (err){
-        yield  put({type: REQUEST_ERR, payload: true })
+        yield  put({type: REQUEST_ERR, payload: false })
     }
 
 }
