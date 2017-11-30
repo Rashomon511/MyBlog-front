@@ -63,7 +63,6 @@ class NewArticle extends React.Component {
                         value={this.state.editorHtml}
                         modules={modules}
                         formats={formats}
-                        bounds={'.app'}
                         style={{ height:300}}
                         placeholder='请输入文章内容'
                     />
