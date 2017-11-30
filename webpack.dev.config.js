@@ -76,6 +76,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.jsx', '.less']
     },
+    devtool: '#cheap-module-eval-source-map',
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {

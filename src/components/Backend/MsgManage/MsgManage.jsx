@@ -1,7 +1,6 @@
 import React from 'react';
-import PropType from 'prop-types';
 import style from './MsgManage.less';
-import {Table, Icon,Pagination} from 'antd';
+import {Table} from 'antd';
 
 class MsgManage extends React.Component {
     constructor(props) {
@@ -30,20 +29,18 @@ class MsgManage extends React.Component {
             title: '审核状态',
             dataIndex: 'state',
             key: 'state',
-        },
-            {
-                title: '操作',
-                key: 'action',
-                render: (text, record) => (
-                    <span>
-      <a href="#">查看</a>
-      <span className="ant-divider"/>
-      <a href="#">通过</a>
-      <span className="ant-divider"/>
-       <a href="#">删除</a>
-    </span>
-                ),
-            }];
+        }, {
+            title: '操作',
+            render: () => (
+                <div>
+                    <a href="#">查看</a>
+                    <span className="ant-divider"/>
+                    <a href="#">通过</a>
+                    <span className="ant-divider"/>
+                    <a href="#">删除</a>
+                </div>
+            ),
+        }];
 
         const data = [{
             key: '1',
@@ -69,8 +66,12 @@ class MsgManage extends React.Component {
         }];
         return (
             <div>
-                <Table pagination={false} columns={columns} dataSource={data} />
-                <Pagination defaultCurrent={1} total={50} />
+                <Table
+                    pagination={true}
+                    bordered
+                    columns={columns}
+                    dataSource={data}
+                />
             </div>
         )
     }

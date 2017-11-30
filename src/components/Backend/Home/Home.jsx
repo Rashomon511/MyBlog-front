@@ -53,7 +53,6 @@ class Home extends React.Component {
     };
 
     render() {
-        console.log(this.props.data)
         const menu = (
             <Menu className={style.menu} selectedKeys={[]} onClick={this.onMenuClick}>
                 <Menu.Item><Icon type="user"/>回到首页</Menu.Item>
@@ -113,7 +112,9 @@ class Home extends React.Component {
                             </Dropdown>
                         </div>
                     </Header>
-                    <Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
+                    <Content
+                        style={{margin: '24px 16px', padding: 24, background: '#fff', color: '#000000'}}
+                    >
                         {this.props.children}
                     </Content>
                     <Footer style={{textAlign: 'center'}}>

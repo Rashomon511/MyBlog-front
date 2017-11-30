@@ -12,8 +12,12 @@ import { login } from "../controllers/index";
 function* fetchLogin(action) {
     try {
         const data = yield call(login,action.payload);
-        yield put({type: SAVE_TOKEN,payload: data.data.token});
-        yield put({type: REQUEST_SUCCESS,payload: true})
+        if(data.data.code === 200){
+            yield put({type: SAVE_TOKEN,payload: data.data.token});
+            yield put({type: REQUEST_SUCCESS,payload: true})
+        }else{
+            yield  put({type: REQUEST_ERR, payload: false })
+        }
     }
     catch (err){
         yield  put({type: REQUEST_ERR, payload: false })

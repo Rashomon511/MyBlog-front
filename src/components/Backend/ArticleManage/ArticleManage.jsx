@@ -1,7 +1,6 @@
 import React from 'react';
-import PropType from 'prop-types';
 import style from './ArticleManage.less';
-import {Table, Icon,Pagination} from 'antd';
+import {Table, Button } from 'antd';
 
 class ArticleManage extends React.Component {
     constructor(props) {
@@ -24,14 +23,11 @@ class ArticleManage extends React.Component {
             key: 'state',
         }, {
             title: '操作',
-            key: 'action',
             render: (text, record) => (
-                <span>
-      <a href="#">编辑 {record.name}</a>
-      <span className="ant-divider"/>
-      <a href="#">删除</a>
-      <span className="ant-divider"/>
-    </span>
+                <div>
+                    <Button size="small" type='primary'>编辑</Button>
+                    <Button size="small" type="danger" style={{ marginLeft: 20 }}>删除</Button>
+                </div>
             ),
         }];
 
@@ -53,8 +49,12 @@ class ArticleManage extends React.Component {
         }];
         return (
             <div>
-                <Table pagination={false} columns={columns} dataSource={data}/>
-                <Pagination defaultCurrent={1} total={50} sty/>
+                <Table
+                    pagination={false}
+                    bordered
+                    columns={columns}
+                    dataSource={data}
+                />
             </div>
         )
     }
