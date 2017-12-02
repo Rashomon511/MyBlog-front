@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
+import Cookies from 'js-cookie';
 import {Layout, Menu, Icon, Dropdown, Avatar} from 'antd';
 
 const {Header, Sider, Content, Footer} = Layout;
@@ -48,18 +49,24 @@ class Home extends React.Component {
         }
     };
 
-    onMenuClick = () => {
-        console.log(22)
+    onMenuClick = (key) => {
+        if(key.key === 'goHome') {
+            return this.context.router.push('/main/article');
+        }else {
+            Cookies.remove('token');
+            return this.context.router.push('/login');
+        }
     };
 
     render() {
         const menu = (
             <Menu className={style.menu} selectedKeys={[]} onClick={this.onMenuClick}>
-                <Menu.Item><Icon type="user"/>回到首页</Menu.Item>
+                <Menu.Item key="goHome"><Icon type="user"/>回到首页</Menu.Item>
                 <Menu.Divider/>
                 <Menu.Item key="logout"><Icon type="logout"/>退出登录</Menu.Item>
             </Menu>
         );
+        const user=JSON.parse(localStorage.getItem('user'));
         return (
             <Layout>
                 <Sider
@@ -72,7 +79,7 @@ class Home extends React.Component {
                         <span className={style.title}>魑魅魍魉</span>
                     </div>
                     <div className={style.menu}>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={this.Click}>
+                        <Menu theme="dark" mode="inline" onClick={this.Click}>
                             <Menu.Item key="1">
                                 <Icon type="edit"/>
                                 <span>新建文章</span>
@@ -107,7 +114,7 @@ class Home extends React.Component {
                             <Dropdown overlay={menu}>
                                 <span className={style.action}>
                                 <Avatar size="samll" className={style.avatar} src='../../src/assets/logo.jpg'/>
-                                <span>Roshomon</span>
+                                <span>{user.userName}</span>
                   </span>
                             </Dropdown>
                         </div>

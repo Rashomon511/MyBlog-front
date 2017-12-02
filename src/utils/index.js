@@ -1,14 +1,19 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
+import Cookies from 'js-cookie';
+import { message } from 'antd';
 
 const fetch = axios.create({
     baseURL: 'http://192.168.0.104:3001', // api的base_url
     timeout: 500000                  // 请求超时时间
-})
+});
 
 fetch.interceptors.request.use(config => {
     // Do something before request is sent
     config.headers['Content-Type'] = 'application/json; charset=utf-8';
-    //config.headers['Authorization'] = getToken() // 让每个请求携带token--['Authorization']
+    if(Cookies.get('token') !== undefined){
+        config.headers['authorization'] = Cookies.get('token') // 让每个请求携带token--['authorization']
+    }
     return config
 }, error => {
     // Do something with request error
@@ -18,9 +23,22 @@ fetch.interceptors.request.use(config => {
 
 // respone拦截器
 fetch.interceptors.response.use(
-    response => response,
+    response => {
+        //console.log(response.data)
+        if(response.data.code === 300 ){
+            browserHistory.push('/login');
+            message.error('token过期！请重新登陆');
+            return response.data;
+        }
+        if(response.data.code === 400){
+            message.error(response.data.msg);
+            return response.data;
+        }
+        return response.data;
+    },
     error => {
         console.log('err' + error);// for debug
+        browserHistory.push('/404');
         return Promise.reject(error)
     }
 )

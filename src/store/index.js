@@ -3,13 +3,17 @@ import createSagaMiddleware from 'redux-saga';
 //import createLogger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import login from '../reducer/login';
+import tags from '../reducer/tags';
 import rootSagas from '../saga/index';
 
 const initState = {
-    login:login.initState
+    login:login.initState,
+    tags:tags.initState
 };
+
 const reducers = {
-    login:login.reducer
+    login:login.reducer,
+    tags:tags.reducer
 };
 
 const sagaMiddleware = createSagaMiddleware();

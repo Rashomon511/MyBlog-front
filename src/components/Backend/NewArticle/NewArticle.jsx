@@ -4,7 +4,7 @@ import { DatePicker } from 'antd';
 import moment from 'moment';
 import style from './NewArticle.less';
 import ReactQuill from 'react-quill';
-import {modules,formats} from '../config/config';
+import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css'
 
 const dateFormat = 'YYYY-MM-DD';

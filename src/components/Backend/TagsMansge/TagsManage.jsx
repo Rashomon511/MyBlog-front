@@ -1,6 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { Input, Button } from 'antd';
+import { Input, Button, message } from 'antd';
 import style from './TagsManage.less';
 import {Table} from 'antd';
 
@@ -12,12 +12,22 @@ class TagsManage extends React.Component {
         };
     }
 
-    DeleteTag = () => {
-        console.log(111)
+    componentDidMount(){
+        const { handleGetTags } = this.props;
+        handleGetTags();
+    }
+
+    DeleteTag = (e) => {
+        const { handleDeleteTags } = this.props;
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        if(auth){
+            handleDeleteTags({ id:e.id })
+        } else {
+            this.error()
+        }
     };
 
     Tags = (e) =>{
-        console.log(e.target.value);
         this.setState({
             tag: e.target.value
         })
@@ -25,10 +35,26 @@ class TagsManage extends React.Component {
 
     createTag = () => {
         const { tag } = this.state;
-        console.log(tag)
-    }
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        const { handleCreateTag } = this.props;
+        if(tag!== ''){
+            if(auth){
+                handleCreateTag({content: tag})
+            } else {
+                this.error()
+            }
+        }else{
+            message.warning('内容不能为空！');
+        }
+
+    };
+
+    error = () => {
+        message.warning('抱歉，您没有权限！');
+    };
 
     render() {
+        const { loading, tags } = this.props;
         const columns = [{
             title: '编号',
             width: '20%',
@@ -41,22 +67,19 @@ class TagsManage extends React.Component {
             key: 'tag',
         }, {
             title: '操作',
-            render: () => (<Button size='small' type="primary" onClick={this.DeleteTag}>删除</Button>),
+            render: (record) => (
+                <Button size='small' type="primary" onClick={()=>this.DeleteTag(record)}>删除</Button>
+            ),
         }];
 
-        const data = [{
-            key: '1',
-            index: 1,
-            tag: 'js',
-        }, {
-            key: '2',
-            index: 2,
-            tag: 'html',
-        }, {
-            key: '3',
-            index: 3,
-            tag: 'css',
-        }];
+        const data = tags.map((item, index)=>{
+            return {
+                key: index,
+                index: index+1,
+                id: item._id,
+                tag: item.content
+            }
+        })
 
         return (
             <div>
@@ -66,8 +89,9 @@ class TagsManage extends React.Component {
                     <Button type="primary" style={{ marginLeft: 20 }} onClick={this.createTag}>确定</Button>
                 </div>
                 <Table
-                    pagination={true}
+                    pagination
                     bordered
+                    loading={loading}
                     columns={columns}
                     dataSource={data}
                 />

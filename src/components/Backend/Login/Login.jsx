@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Icon, Input, Button} from 'antd';
-import Cookies from 'js-cookie'
-import style from './Login.less'
+import Cookies from 'js-cookie';
+import style from './Login.less';
 
 const FormItem = Form.Item;
 
@@ -17,18 +17,21 @@ class LoginForm extends React.Component {
     };
 
     // 登陆完成获取token,并存储token,跳转页面
-    componentWillReceiveProps(nextProps){
-        if(nextProps.loginState === true){
-            Cookies.set('token',nextProps.token);
-            this.context.router.push('/home')
-        }
-    }
+    // componentWillReceiveProps(nextProps){
+    //     const { handleLoginState } = this.props;
+    //     if(nextProps.loginState === true){
+    //         Cookies.set('token',nextProps.token);
+    //         this.context.router.push('/home');
+    //         handleLoginState(false);
+    //     }
+    // }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const { handleLogin } = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                localStorage.setItem('user',JSON.stringify(values));
                 handleLogin(values);
             }
         });
@@ -38,23 +41,29 @@ class LoginForm extends React.Component {
         const {getFieldDecorator} = this.props.form;
         return (
             <div>
-                <Form onSubmit={this.handleSubmit} className={style.loginForm}>
+                <Form className={style.loginForm}>
                     <FormItem>
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }}  />} placeholder="visitor" />
+                            <Input
+                                prefix={<Icon type="user" style={{ fontSize: 13 }}  />}
+                                placeholder="游客账号：visitor"
+                            />
                         )}
                     </FormItem>
                     <FormItem>
                         {getFieldDecorator('password', {
                             rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="888888" />
+                            <Input
+                                prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
+                                type="password" placeholder="游客密码：123456"
+                            />
                         )}
                     </FormItem>
                     <FormItem>
-                        <Button type="primary" htmlType="submit" className={style.loginFormButton}>
+                        <Button type="primary" onClick={this.handleSubmit} className={style.loginFormButton}>
                             登陆
                         </Button>
                     </FormItem>

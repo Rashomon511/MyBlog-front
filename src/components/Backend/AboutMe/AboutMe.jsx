@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import style from './AboutMe.less';
 import ReactQuill from 'react-quill';
-import {modules,formats} from '../config/config';
+import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css'
 
 class AboutMe extends React.Component {
