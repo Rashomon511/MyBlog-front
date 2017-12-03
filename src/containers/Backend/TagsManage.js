@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TagsManage from '../../components/Backend/TagsMansge/TagsManage';
-import { request_tags, delete_tag, create_tag } from '../../action'
+import { request_tags, delete_tag, create_tag } from '../../action';
 
 function mapStateToProps(state) {
     return {

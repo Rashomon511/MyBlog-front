@@ -1,35 +1,94 @@
 import React from 'react';
-import { Input, Button, Select } from 'antd'
-import { DatePicker } from 'antd';
+import { Input, Button, Select, message, DatePicker } from 'antd'
 import moment from 'moment';
 import style from './NewArticle.less';
 import ReactQuill from 'react-quill';
 import {modules,formats} from '../../../config/config';
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.snow.css';
 
-const dateFormat = 'YYYY-MM-DD';
+const { Option }= Select;
 
 class NewArticle extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {editorHtml: '',}
+        this.state = {
+            title: '',
+            tags: [],
+            date: '',
+            editorHtml: '',
+        }
     }
 
-    handleChange = (html) => {
+    componentDidMount(){
+        const { handleGetTags } = this.props;
+        handleGetTags();
+    }
+
+    getTitle = (e) => {
+        this.setState({
+            title: e.target.value
+        })
+    };
+
+    handleSelect = (value) => {
+        console.log(value);
+        this.setState({
+            tags: value
+        })
+    };
+
+    handleTime = (value, dateString) => {
+        console.log('Selected Time: ', value);
+        console.log('Formatted Selected Time: ', dateString);
+        this.setState({
+            date: dateString
+        })
+    };
+
+    handleContent = (html) => {
         console.log(html);
         this.setState({editorHtml: html});
     };
 
-    handleSelect = (value) => {
-        console.log(value)
+    saveArticle = () => {
+        const { title, tags, date, editorHtml } = this.state;
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        const data={
+            title: title,
+            tags: tags,
+            date: date,
+            content: editorHtml,
+            draft: true
+        };
+        if(auth){
+            console.log(data)
+        } else {
+            message.warning('抱歉，您没有权限！');
+        }
     };
 
+    submitArticle = () => {
+        const { title, tags, date, editorHtml } = this.state;
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        const data={
+            title: title,
+            tags: tags,
+            date: date,
+            content: editorHtml,
+            draft: false
+        };
+        if(auth){
+            console.log(data)
+        } else {
+            message.warning('抱歉，您没有权限！');
+        }
+    };
 
     render() {
-        const children = [];
-        for (let i = 10; i < 13; i++) {
-            children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-        }
+        const { tags } = this.props;
+        let children = tags.map((item)=>{
+            return <Option key={item._id}>{item.content}</Option>
+        });
         return (
             <div className={style.article}>
                 <div className={style.box}>
@@ -37,6 +96,7 @@ class NewArticle extends React.Component {
                     <Input
                         placeholder="请输入标题"
                         style={{ width: '80%' }}
+                        onChange={this.getTitle}
                     />
                 </div>
                 <div className={style.box}>
@@ -44,8 +104,7 @@ class NewArticle extends React.Component {
                     <Select
                         mode="multiple"
                         style={{ width: '80%' }}
-                        placeholder="Please select"
-                        defaultValue={['a10', 'c12']}
+                        placeholder="请选择标签"
                         onChange={this.handleSelect}
                     >
                         {children}
@@ -53,13 +112,18 @@ class NewArticle extends React.Component {
                 </div>
                 <div className={style.box}>
                     <span>发布时间：</span>
-                    <DatePicker defaultValue={moment(new Date, dateFormat)}  />
+                    <DatePicker
+                        showTime
+                        format="YYYY-MM-DD HH:mm"
+                        placeholder="Select Time"
+                        onChange={this.handleTime}
+                    />
                 </div>
                 <div className={style.articleBox}>
                     <p>文章详情：</p>
                     <ReactQuill
                         theme='snow'
-                        onChange={this.handleChange}
+                        onChange={this.handleContent}
                         value={this.state.editorHtml}
                         modules={modules}
                         formats={formats}
@@ -68,8 +132,19 @@ class NewArticle extends React.Component {
                     />
                 </div>
                 <div className={style.btn}>
-                    <Button type="primary" style={{ marginRight: 20 }}>保存草稿</Button>
-                    <Button type="primary">提交文章</Button>
+                    <Button
+                        type="primary"
+                        style={{ marginRight: 20 }}
+                        onClick={this.saveArticle}
+                    >
+                        保存草稿
+                    </Button>
+                    <Button
+                        type="primary"
+                        onClick={this.submitArticle}
+                    >
+                        提交文章
+                    </Button>
                 </div>
             </div>
 

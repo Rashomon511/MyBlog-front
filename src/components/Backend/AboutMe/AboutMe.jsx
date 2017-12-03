@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import style from './AboutMe.less';
 import ReactQuill from 'react-quill';
 import {modules,formats} from '../../../config/config';
@@ -14,6 +14,16 @@ class AboutMe extends React.Component {
     handleChange = (html) => {
         console.log(html);
         this.setState({editorHtml: html});
+    };
+
+    submitResume = () => {
+      const { editorHtml } = this.state;
+      const auth = JSON.parse(localStorage.getItem('auth'));
+      if(auth){
+          console.log(editorHtml)
+      } else {
+          message.warning('抱歉，您没有权限！');
+      }
     };
 
     render() {
@@ -32,7 +42,7 @@ class AboutMe extends React.Component {
                     />
                 </div>
                 <div className={style.btn}>
-                    <Button type="primary">提交</Button>
+                    <Button type="primary" onClick={this.submitResume}>提交</Button>
                 </div>
             </div>
         )
