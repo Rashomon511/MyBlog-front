@@ -19,3 +19,13 @@ export const createTag = (data) => {
 export const deleteTag = (data) => {
     return fetch({url:'/deleteTags', method: 'POST', data})
 };
+
+// 获取简历
+export const requestResume = () => {
+    return fetch({url:'/getResume', method: 'GET'})
+};
+
+// 提交简历
+export const submitResume = (data) => {
+    return fetch({url:'/saveResume', method: 'POST', data})
+};

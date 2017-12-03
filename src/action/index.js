@@ -32,3 +32,18 @@ export const delete_tag_failed = createAction('DELETE_TAG_FAILED');
 // 文章
 
 
+// 简历
+export const request_resume = createAction('REQUEST_RESUME');
+
+export const submit_resume = createAction('SUBMIT_RESUME');
+
+export const save_resume = createAction('SAVE_RESUME');
+
+export const request_resume_success = createAction('REQUEST_RESUME_SUCCESS');
+
+export const request_resume_failed = createAction('REQUEST_RESUME_FAILED');
+
+export const submit_resume_success = createAction('SUBMIT_RESUME_SUCCESS');
+
+export const submit_resume_failed = createAction('SUBMIT_RESUME_FAILED');
+

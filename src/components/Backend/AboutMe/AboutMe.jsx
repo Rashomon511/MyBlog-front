@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, message } from 'antd';
-import style from './AboutMe.less';
 import ReactQuill from 'react-quill';
+import style from './AboutMe.less';
 import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css'
 
@@ -11,6 +11,11 @@ class AboutMe extends React.Component {
         this.state = {editorHtml: '',}
     }
 
+    componentDidMount(){
+        const { requestResume } = this.props;
+        requestResume();
+    }
+
     handleChange = (html) => {
         console.log(html);
         this.setState({editorHtml: html});
@@ -18,9 +23,10 @@ class AboutMe extends React.Component {
 
     submitResume = () => {
       const { editorHtml } = this.state;
+      const { submitResume } = this.props;
       const auth = JSON.parse(localStorage.getItem('auth'));
       if(auth){
-          console.log(editorHtml)
+          submitResume({content:editorHtml})
       } else {
           message.warning('抱歉，您没有权限！');
       }

@@ -37,7 +37,6 @@ module.exports = {
         },//加载less
             {
                 test: /\.css$/,
-                include: /node_modules/,
                 loader:'style-loader!css-loader'
             },
             {
@@ -55,7 +54,6 @@ module.exports = {
                     }
                 }
             },//加载js/jsx
-
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [
@@ -83,6 +81,11 @@ module.exports = {
                 NODE_ENV: JSON.stringify("development")
             }
         }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -90,7 +93,7 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),//模块热替换
         new ExtractTextPlugin('style.css', { allChunks: true }),
-        new ProgressBarPlugin()//打包进度条
+        new ProgressBarPlugin(),//打包进度条
     ],
     target: 'web'
 };
