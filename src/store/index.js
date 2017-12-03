@@ -5,18 +5,21 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import login from '../reducer/login';
 import tags from '../reducer/tags';
 import resume from '../reducer/resume';
+import article from '../reducer/article';
 import rootSagas from '../saga/index';
 
 const initState = {
     login:login.initState,
     tags:tags.initState,
-    resume: resume.initState
+    resume: resume.initState,
+    article:article.initState
 };
 
 const reducers = {
     login:login.reducer,
     tags:tags.reducer,
-    resume:resume.reducer
+    resume:resume.reducer,
+    article:article.reducer
 };
 
 const sagaMiddleware = createSagaMiddleware();

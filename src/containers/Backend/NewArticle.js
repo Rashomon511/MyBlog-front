@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import NewArticle from '../../components/Backend/NewArticle/NewArticle';
-import { request_tags } from '../../action'
+import { request_tags,submit_article } from '../../action'
 
 function mapStateToProps(state) {
     return {
@@ -12,6 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         handleGetTags: bindActionCreators(request_tags, dispatch),
+        handleSubmitArticle: bindActionCreators(submit_article,dispatch)
     };
 }
 

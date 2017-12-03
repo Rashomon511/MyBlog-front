@@ -52,6 +52,7 @@ class NewArticle extends React.Component {
 
     saveArticle = () => {
         const { title, tags, date, editorHtml } = this.state;
+        const { handleSubmitArticle } = this.props;
         const auth = JSON.parse(localStorage.getItem('auth'));
         const data={
             title: title,
@@ -61,7 +62,7 @@ class NewArticle extends React.Component {
             draft: true
         };
         if(auth){
-            console.log(data)
+            handleSubmitArticle(data)
         } else {
             message.warning('抱歉，您没有权限！');
         }
@@ -69,6 +70,7 @@ class NewArticle extends React.Component {
 
     submitArticle = () => {
         const { title, tags, date, editorHtml } = this.state;
+        const { handleSubmitArticle } = this.props;
         const auth = JSON.parse(localStorage.getItem('auth'));
         const data={
             title: title,
@@ -78,7 +80,7 @@ class NewArticle extends React.Component {
             draft: false
         };
         if(auth){
-            console.log(data)
+            handleSubmitArticle(data)
         } else {
             message.warning('抱歉，您没有权限！');
         }

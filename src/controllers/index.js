@@ -29,3 +29,13 @@ export const requestResume = () => {
 export const submitResume = (data) => {
     return fetch({url:'/saveResume', method: 'POST', data})
 };
+
+// 获取文章列表
+export const requestArticle = () => {
+    return fetch({url:'/getArticle', method: 'GET'})
+};
+
+// 提交文章
+export const submitArticle = (data) => {
+    return fetch({url:'/saveArticle', method: 'POST', data})
+};
