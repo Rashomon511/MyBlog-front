@@ -1,6 +1,4 @@
-import {takeEvery, takeLatest} from 'redux-saga';
-import {put, call} from 'redux-saga/effects';
-import 'babel-polyfill';
+import {put, call, takeEvery} from 'redux-saga/effects';
 import Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
 

@@ -1,6 +1,4 @@
-import {takeEvery, takeLatest} from 'redux-saga';
-import {put, call} from 'redux-saga/effects';
-import 'babel-polyfill';
+import {put, call, takeEvery} from 'redux-saga/effects';
 import { fetchTags, createTag, deleteTag } from "../controllers/index";
 import {
     REQUEST_TAGS,

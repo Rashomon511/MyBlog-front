@@ -34,6 +34,10 @@ export const request_article = createAction('REQUEST_ARTICLE');
 
 export const submit_article = createAction('SUBMIT_ARTICLE');
 
+export const editor_article = createAction('EDITOR_ARTICLE');
+
+export const delete_article = createAction('DELETE_ARTICLE');
+
 export const save_article_list = createAction('SAVE_ARTICLE_LIST');
 
 export const request_article_success = createAction('REQUEST_ARTICLE_SUCCESS');
@@ -43,6 +47,14 @@ export const request_article_failed = createAction('REQUEST_ARTICLE_FAILED');
 export const submit_article_success = createAction('SUBMIT_ARTICLE_SUCCESS');
 
 export const submit_article_failed = createAction('SUBMIT_ARTICLE_FAILED');
+
+export const delete_article_success = createAction('DELETE_ARTICLE_SUCCESS');
+
+export const delete_article_failed = createAction('DELETE_ARTICLE_FAILED');
+
+export const editor_article_success = createAction('EDITOR_ARTICLE_SUCCESS');
+
+export const editor_article_failed = createAction('EDITOR_ARTICLE_FAILED');
 
 // 简历
 export const request_resume = createAction('REQUEST_RESUME');

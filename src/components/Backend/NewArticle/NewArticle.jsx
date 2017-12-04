@@ -7,7 +7,7 @@ import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css';
 
 const { Option }= Select;
-
+const dateFormat = 'YYYY-MM-DD HH:mm';
 class NewArticle extends React.Component {
     constructor(props) {
         super(props);
@@ -38,8 +38,6 @@ class NewArticle extends React.Component {
     };
 
     handleTime = (value, dateString) => {
-        console.log('Selected Time: ', value);
-        console.log('Formatted Selected Time: ', dateString);
         this.setState({
             date: dateString
         })
@@ -88,6 +86,7 @@ class NewArticle extends React.Component {
 
     render() {
         const { tags } = this.props;
+        const { title, date } = this.state;
         let children = tags.map((item)=>{
             return <Option key={item._id}>{item.content}</Option>
         });
@@ -97,6 +96,7 @@ class NewArticle extends React.Component {
                     <span>文章标题：</span>
                     <Input
                         placeholder="请输入标题"
+                        value={title}
                         style={{ width: '80%' }}
                         onChange={this.getTitle}
                     />

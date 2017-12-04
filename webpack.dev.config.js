@@ -7,7 +7,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 
 module.exports = {
-    entry: [path.resolve(__dirname, './src/index.js')],//打包入口文件
+    entry: ['babel-polyfill',path.resolve(__dirname, './src/index.js')],//打包入口文件
     output: {
         filename: 'bundle.js', //文件名
         path: path.resolve(__dirname, 'dist'), //输出路劲

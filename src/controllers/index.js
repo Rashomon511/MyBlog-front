@@ -39,3 +39,13 @@ export const requestArticle = () => {
 export const submitArticle = (data) => {
     return fetch({url:'/saveArticle', method: 'POST', data})
 };
+
+// 删除文章
+export const deleteArticle = (data) => {
+    return fetch({url:`/deleteArticle?id=${data}`,method: 'GET'})
+};
+
+// 编辑文章
+export const editorArticle = (data) => {
+    return fetch({url:'/updateArticle', method: 'POST', data})
+};

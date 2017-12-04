@@ -1,9 +1,8 @@
 import { fork } from 'redux-saga/effects'
-import 'babel-polyfill';
 import {watchLogin} from './login';
 import {watchTags, watchCreateTag, watchDeleteTag} from './tags';
 import {watchRequestResume,watchSubmitResume} from './resume';
-import {watchRequestArticle,watchSubmitArticle} from './article';
+import {watchRequestArticle,watchSubmitArticle,watchDeleteArticle,watchEditArticle} from './article';
 export default function* rootSaga() {
     yield [
         fork(watchLogin),
@@ -13,6 +12,8 @@ export default function* rootSaga() {
         fork(watchRequestResume),
         fork(watchSubmitResume),
         fork(watchRequestArticle),
-        fork(watchSubmitArticle)
+        fork(watchSubmitArticle),
+        fork(watchEditArticle),
+        fork(watchDeleteArticle)
     ]
 }

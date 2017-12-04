@@ -3,7 +3,9 @@ import {handleActions} from 'redux-actions';
 const initState = {
     articleList: [],
     requestState: false,
-    submitState: false
+    submitState: false,
+    deleteState: false,
+    editState: false
 };
 
 const reducer = handleActions({
@@ -21,6 +23,18 @@ const reducer = handleActions({
     }),
     SUBMIT_ARTICLE_FAILED: (state,action) => ({
         ...state, submitState: action.payload
+    }),
+    DELETE_ARTICLE_SUCCESS: (state,action) => ({
+        ...state, deleteState: action.payload
+    }),
+    DELETE_ARTICLE_FAILED: (state,action) => ({
+        ...state, deleteState: action.payload
+    }),
+    EDITOR_ARTICLE_SUCCESS: (state,action) => ({
+        ...state, editState: action.payload
+    }),
+    EDITOR_ARTICLE_FAILED: (state,action) => ({
+        ...state, editState: action.payload
     }),
 }, initState);
 
