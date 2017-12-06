@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 module.exports = {
@@ -21,14 +22,14 @@ module.exports = {
     module: {
         rules: [{
             test: /\.less$/,
-/*            use: ExtractTextPlugin.extract({
+            use: ExtractTextPlugin.extract({
                 fallback: "style-loader",
                 use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\"",
-            }),*/
-            loaders: [
-                'style-loader',
-                "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\"",
-            ],
+            }),
+            // loaders: [
+            //     'style-loader',
+            //     "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\"",
+            // ],
             exclude: /node_modules/
         },{
             test: /\.less$/,
@@ -74,18 +75,17 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.jsx', '.less']
     },
-    devtool: '#cheap-module-eval-source-map',
+    //devtool: 'eval-source-map',
+    //devtool: 'cheap-module-eval-source-map',
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("development")
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        // }),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -93,7 +93,15 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),//模块热替换
         new ExtractTextPlugin('style.css', { allChunks: true }),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new ProgressBarPlugin(),//打包进度条
+        //new BundleAnalyzerPlugin()
     ],
+    node: {
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+    },
     target: 'web'
 };

@@ -43,9 +43,13 @@ class NewArticle extends React.Component {
         })
     };
 
-    handleContent = (html) => {
-        console.log(html);
-        this.setState({editorHtml: html});
+    handleContent = (content, delta, source, editor) => {
+        console.log(content);
+        console.log(delta);
+        console.log(source);
+        console.log(editor.getText());
+        console.log(this.reactQuillRef.getEditor());
+        //this.setState({editorHtml: html});
     };
 
     saveArticle = () => {
@@ -126,6 +130,7 @@ class NewArticle extends React.Component {
                     <ReactQuill
                         theme='snow'
                         onChange={this.handleContent}
+                        ref={(el) => { this.reactQuillRef = el }}
                         value={this.state.editorHtml}
                         modules={modules}
                         formats={formats}
