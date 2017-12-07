@@ -14,8 +14,9 @@ class NewArticle extends React.Component {
         this.state = {
             title: '',
             tags: [],
-            date: '',
+            date: new Date(),
             editorHtml: '',
+            abstract: ''
         }
     }
 
@@ -44,16 +45,14 @@ class NewArticle extends React.Component {
     };
 
     handleContent = (content, delta, source, editor) => {
-        console.log(content);
-        console.log(delta);
-        console.log(source);
-        console.log(editor.getText());
-        console.log(this.reactQuillRef.getEditor());
-        //this.setState({editorHtml: html});
+        this.setState({
+            editorHtml: content,
+            abstract: editor.getText()
+        });
     };
 
     saveArticle = () => {
-        const { title, tags, date, editorHtml } = this.state;
+        const { title, tags, date, editorHtml, abstract } = this.state;
         const { handleSubmitArticle } = this.props;
         const auth = JSON.parse(localStorage.getItem('auth'));
         const data={
@@ -61,17 +60,19 @@ class NewArticle extends React.Component {
             tags: tags,
             date: date,
             content: editorHtml,
+            abstract:abstract,
             draft: true
         };
         if(auth){
-            handleSubmitArticle(data)
+            handleSubmitArticle(data);
+            this.clearState();
         } else {
             message.warning('抱歉，您没有权限！');
         }
     };
 
     submitArticle = () => {
-        const { title, tags, date, editorHtml } = this.state;
+        const { title, tags, date, editorHtml, abstract } = this.state;
         const { handleSubmitArticle } = this.props;
         const auth = JSON.parse(localStorage.getItem('auth'));
         const data={
@@ -79,21 +80,34 @@ class NewArticle extends React.Component {
             tags: tags,
             date: date,
             content: editorHtml,
+            abstract:abstract,
             draft: false
         };
         if(auth){
-            handleSubmitArticle(data)
+            handleSubmitArticle(data);
+            this.clearState();
         } else {
             message.warning('抱歉，您没有权限！');
         }
     };
 
+    clearState = () => {
+      this.setState({
+          title: '',
+          tags: [],
+          date: new Date(),
+          editorHtml: '',
+          abstract: ''
+      })
+    };
+
     render() {
-        const { tags } = this.props;
-        const { title, date } = this.state;
-        let children = tags.map((item)=>{
-            return <Option key={item._id}>{item.content}</Option>
+        const { allTags } = this.props;
+        const { title, date, tags } = this.state;
+        let children = allTags.map((item)=>{
+            return <Option key={item.content}>{item.content}</Option>
         });
+        console.log(moment(date, 'YYYY-MM-DD HH:mm'));
         return (
             <div className={style.article}>
                 <div className={style.box}>
@@ -110,6 +124,7 @@ class NewArticle extends React.Component {
                     <Select
                         mode="multiple"
                         style={{ width: '80%' }}
+                        value={tags}
                         placeholder="请选择标签"
                         onChange={this.handleSelect}
                     >
@@ -121,6 +136,8 @@ class NewArticle extends React.Component {
                     <DatePicker
                         showTime
                         format="YYYY-MM-DD HH:mm"
+                        defaultValue={moment(new Date(), dateFormat)}
+                        value={moment(date, dateFormat)}
                         placeholder="Select Time"
                         onChange={this.handleTime}
                     />

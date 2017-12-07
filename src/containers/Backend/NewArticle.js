@@ -5,7 +5,7 @@ import { request_tags,submit_article } from '../../action'
 
 function mapStateToProps(state) {
     return {
-        tags: state.tags.tags
+        allTags: state.tags.tags
     };
 }
 
