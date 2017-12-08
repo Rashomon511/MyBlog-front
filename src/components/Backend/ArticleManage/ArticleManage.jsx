@@ -1,14 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
-import style from './ArticleManage.less';
-import {Table, Button } from 'antd';
+import {Table, Button, Modal } from 'antd';
 
 
 class ArticleManage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            visible: false,
+            id: ''
+        };
     }
+
+    static contextTypes = {
+        router: PropTypes.object
+    };
 
     componentDidMount(){
         const { handleRequestArticle } = this.props;
@@ -16,16 +23,34 @@ class ArticleManage extends React.Component {
     }
 
     Editor = (e) => {
-        console.log(e)
+        return this.context.router.push('/home/editArticle/?id='+e.id);
     };
 
     Delete = (e) => {
+        this.setState({
+            visible: true,
+            id: e.id
+        })
+    };
+
+    handleCancel = () => {
+        this.setState({
+            visible: false
+        })
+    };
+
+    handleOk = () => {
         const { handleDeleteArticle } = this.props;
-        handleDeleteArticle(e.id);
+        const { id } = this.state;
+        handleDeleteArticle(id);
+        this.setState({
+            visible: false
+        })
     };
 
     render() {
         const {article} = this.props;
+        const {visible} = this.state;
         const columns = [{
             title: '文章名称',
             dataIndex: 'title',
@@ -60,7 +85,6 @@ class ArticleManage extends React.Component {
                 </div>
             ),
         }];
-        console.log(article);
 
         const data=article.map((item,index)=>{
             return {
@@ -79,6 +103,20 @@ class ArticleManage extends React.Component {
                     columns={columns}
                     dataSource={data}
                 />
+                <Modal
+                    visible={visible}
+                    title="提示"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    footer={[
+                        <Button key="back" size="large" onClick={this.handleCancel}>取消</Button>,
+                        <Button key="submit" type="primary" size="large" onClick={this.handleOk}>
+                            确认
+                        </Button>,
+                    ]}
+                >
+                    您将要删除该文章
+                </Modal>
             </div>
         )
     }

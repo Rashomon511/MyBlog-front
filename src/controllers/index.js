@@ -46,6 +46,6 @@ export const deleteArticle = (data) => {
 };
 
 // 编辑文章
-export const editorArticle = (data) => {
-    return fetch({url:'/updateArticle', method: 'POST', data})
+export const getArticleById = (data) => {
+    return fetch({url:`/getArticleById?id=${data}`, method: 'GET'})
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router';
 import Cookies from 'js-cookie';
 import {Layout, Menu, Icon, Dropdown, Avatar} from 'antd';
 

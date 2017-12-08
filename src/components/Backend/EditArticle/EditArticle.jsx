@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input, Button, Select, message, DatePicker } from 'antd'
 import moment from 'moment';
-import style from './NewArticle.less';
+import style from './EditArticle.less';
 import ReactQuill from 'react-quill';
 import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css';
 
 const { Option }= Select;
 const dateFormat = 'YYYY-MM-DD HH:mm';
-class NewArticle extends React.Component {
+class EditArticle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,25 +21,27 @@ class NewArticle extends React.Component {
         }
     }
 
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
     componentDidMount(){
         const { handleGetTags, handleGetArticle } = this.props;
         const id=this.props.location.query.id;
         handleGetTags();
-        if(id !== undefined ){
-            handleGetArticle(id);
-        }
+        handleGetArticle(id);
     }
 
     componentWillReceiveProps(nextProps) {
         const { articleContent } = nextProps;
         if(Object.keys(articleContent).length>0){
-            // this.setState({
-            //     title: articleContent.title,
-            //     tags: articleContent.tags,
-            //     date: articleContent.date,
-            //     editorHtml: articleContent.editorHtml,
-            //     abstract: articleContent.abstract
-            // })
+            let time = moment(articleContent.date).format('YYYY-MM-DD HH:mm');
+            this.setState({
+                title: articleContent.title,
+                tags: articleContent.tags,
+                date: moment(time, 'YYYY-MM-DD HH:mm'),
+                editorHtml: articleContent.content
+            })
         }
 
     }
@@ -110,13 +113,7 @@ class NewArticle extends React.Component {
     };
 
     clearState = () => {
-      this.setState({
-          title: '',
-          tags: [],
-          date: new Date(),
-          editorHtml: '',
-          abstract: ''
-      })
+        return this.context.router.push('/home/newArticle');
     };
 
     render() {
@@ -164,7 +161,6 @@ class NewArticle extends React.Component {
                     <ReactQuill
                         theme='snow'
                         onChange={this.handleContent}
-                        ref={(el) => { this.reactQuillRef = el }}
                         value={this.state.editorHtml}
                         modules={modules}
                         formats={formats}
@@ -193,4 +189,4 @@ class NewArticle extends React.Component {
     }
 }
 
-export default NewArticle;
+export default EditArticle;

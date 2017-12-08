@@ -14,6 +14,7 @@ import Home from './containers/Backend/Home'; //后台主控页面
 import Resume from './containers/Backend/Resume'; //简历页面
 import ArticleManage from './containers/Backend/ArticleManage'; // 文章管理
 import NewArticle from './containers/Backend/NewArticle'; //新建文章
+import EditArticle from './containers/Backend/EditArticle';
 import TagsManage from './containers/Backend/TagsManage'; //标签管理
 import MsgManage from './containers/Backend/MsgManage'; //留言管理
 import ErrorPage from './components/Error/404'; //404页面
@@ -45,6 +46,7 @@ const routes = (
                     <Route path="resume" component={Resume}/>
                     <Route path="articleMge" component={ArticleManage}/>
                     <Route path="newArticle" component={NewArticle}/>
+                    <Route path="editArticle" component={EditArticle}/>
                     <Route path="TagsMge" component={TagsManage}/>
                     <Route path="msgManage" component={MsgManage}/>
                 </Route>

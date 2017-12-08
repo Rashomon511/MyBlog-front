@@ -1,6 +1,5 @@
 import React from 'react';
-import PropType from 'prop-types';
-import { Input, Button, message } from 'antd';
+import { Input, Button, message, Modal } from 'antd';
 import style from './TagsManage.less';
 import {Table} from 'antd';
 
@@ -9,6 +8,8 @@ class TagsManage extends React.Component {
         super(props);
         this.state = {
             tag: '',
+            visible: false,
+            id: ''
         };
     }
 
@@ -18,13 +19,10 @@ class TagsManage extends React.Component {
     }
 
     DeleteTag = (e) => {
-        const { handleDeleteTags } = this.props;
-        const auth = JSON.parse(localStorage.getItem('auth'));
-        if(auth){
-            handleDeleteTags({ id:e.id })
-        } else {
-            this.error()
-        }
+        this.setState({
+            id: e.id,
+            visible: true,
+        });
     };
 
     Tags = (e) =>{
@@ -53,8 +51,29 @@ class TagsManage extends React.Component {
         message.warning('抱歉，您没有权限！');
     };
 
+    handleCancel = () => {
+        this.setState({
+            visible: false
+        })
+    };
+
+    handleOk = () => {
+        const { handleDeleteTags } = this.props;
+        const { id } = this.state;
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        if(auth){
+            handleDeleteTags({ id: id })
+        } else {
+            this.error()
+        }
+        this.setState({
+            visible: false
+        })
+    };
+
     render() {
         const { loading, tags } = this.props;
+        const { visible } = this.state;
         const columns = [{
             title: '编号',
             width: '20%',
@@ -95,6 +114,20 @@ class TagsManage extends React.Component {
                     columns={columns}
                     dataSource={data}
                 />
+                <Modal
+                    visible={visible}
+                    title="提示"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    footer={[
+                        <Button key="back" size="large" onClick={this.handleCancel}>取消</Button>,
+                        <Button key="submit" type="primary" size="large" onClick={this.handleOk}>
+                            确认
+                        </Button>,
+                    ]}
+                >
+                    您将要删除该标签
+                </Modal>
             </div>
         )
     }

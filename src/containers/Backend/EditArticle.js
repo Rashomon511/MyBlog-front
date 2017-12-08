@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import NewArticle from '../../components/Backend/NewArticle/NewArticle';
+import EditArticle from '../../components/Backend/EditArticle/EditArticle';
 import { request_tags,submit_article, get_article } from '../../action'
 
 function mapStateToProps(state) {
@@ -19,4 +19,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewArticle);
+export default connect(mapStateToProps, mapDispatchToProps)(EditArticle);

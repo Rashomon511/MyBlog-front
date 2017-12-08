@@ -1,4 +1,5 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
+import {message} from 'antd';
 import { fetchTags, createTag, deleteTag } from "../controllers/index";
 import {
     REQUEST_TAGS,
@@ -61,7 +62,8 @@ function* DeleteTag(action) {
         const data = yield call(deleteTag, action.payload);
         if(data.code === 200){
             yield put({type: DELETE_TAG_SUCCESS,payload: true});
-            yield put({type: REQUEST_TAGS})
+            yield put({type: REQUEST_TAGS});
+            message.success('删除标签成功！');
         }else{
             yield  put({type: DELETE_TAG_FAILED, payload: false })
         }

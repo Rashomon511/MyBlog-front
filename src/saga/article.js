@@ -3,20 +3,21 @@ import {message} from 'antd';
 
 import {
     SAVE_ARTICLE_LIST,
+    SAVE_ARTICLE_CONTENT,
     REQUEST_ARTICLE,
     SUBMIT_ARTICLE,
     DELETE_ARTICLE,
-    EDITOR_ARTICLE,
+    GET_ARTICLE,
     REQUEST_ARTICLE_SUCCESS,
     REQUEST_ARTICLE_FAILED,
     SUBMIT_ARTICLE_SUCCESS,
     SUBMIT_ARTICLE_FAILED,
     DELETE_ARTICLE_SUCCESS,
     DELETE_ARTICLE_FAILED,
-    EDITOR_ARTICLE_SUCCESS,
-    EDITOR_ARTICLE_FAILED
+    GET_ARTICLE_SUCCESS,
+    GET_ARTICLE_FAILED,
 } from '../action/actionType'
-import { requestArticle, submitArticle, deleteArticle, editorArticle } from "../controllers/index";
+import { requestArticle, submitArticle, deleteArticle, getArticleById } from "../controllers/index";
 
 function* RequestArticle() {
     try {
@@ -57,22 +58,23 @@ export function* watchSubmitArticle() {
     yield takeEvery(SUBMIT_ARTICLE, SubmitArticle);
 }
 
-function *EditorArticle(action) {
+function *GetArticleById(action) {
     try {
-        const data = yield call(editorArticle,action.payload);
+        const data = yield call(getArticleById,action.payload);
         if(data.code === 200){
-            yield put({type: EDITOR_ARTICLE_SUCCESS,payload: true})
+            yield put({type: SAVE_ARTICLE_CONTENT, payload: data.data[0]});
+            yield put({type: GET_ARTICLE_SUCCESS,payload: true})
         }else{
-            yield  put({type: EDITOR_ARTICLE_FAILED, payload: false })
+            yield  put({type: GET_ARTICLE_FAILED, payload: false })
         }
     }
     catch (err){
-        yield  put({type: EDITOR_ARTICLE_FAILED, payload: false })
+        yield  put({type: GET_ARTICLE_FAILED, payload: false })
     }
 }
 
-export function* watchEditArticle() {
-    yield takeEvery(EDITOR_ARTICLE, EditorArticle);
+export function* watchGetArticleById() {
+    yield takeEvery(GET_ARTICLE, GetArticleById);
 }
 
 
