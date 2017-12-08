@@ -37,7 +37,10 @@ class TagsManage extends React.Component {
         const { handleCreateTag } = this.props;
         if(tag!== ''){
             if(auth){
-                handleCreateTag({content: tag})
+                handleCreateTag({content: tag});
+                this.setState({
+                    tag: ''
+                });
             } else {
                 this.error()
             }
@@ -104,8 +107,19 @@ class TagsManage extends React.Component {
             <div>
                 <div className={style.newTag}>
                     <span>新建标签：</span>
-                    <Input placeholder="请输入新标签" style={{ width: '40%' }} onChange={this.Tags}/>
-                    <Button type="primary" style={{ marginLeft: 20 }} onClick={this.createTag}>确定</Button>
+                    <Input
+                        placeholder="请输入新标签"
+                        style={{ width: '40%' }}
+                        onChange={this.Tags}
+                        value={this.state.tag}
+                    />
+                    <Button
+                        type="primary"
+                        style={{ marginLeft: 20 }}
+                        onClick={this.createTag}
+                    >
+                        确定
+                    </Button>
                 </div>
                 <Table
                     pagination

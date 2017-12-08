@@ -1,6 +1,7 @@
 
 .tags {
   flex: 1;
+  justify-content: center;
   width: calc(100% - 200px);
   margin: 0 auto;
   margin-top: 2rem;
@@ -10,7 +11,12 @@
   overflow: auto;
 }
 .tags::-webkit-scrollbar {display:none}
-
+.tagName{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .title {
   margin: 0 auto;
   text-align: center;
@@ -26,4 +32,10 @@
   border-right: 0;
   border-top: 1px solid floralwhite;
   border-bottom: 1px solid #fff;
+}
+
+.number {
+  color: dimgrey;
+  font-size: 16px;
+  text-align: center;
 }

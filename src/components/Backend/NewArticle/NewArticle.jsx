@@ -21,26 +21,8 @@ class NewArticle extends React.Component {
     }
 
     componentDidMount(){
-        const { handleGetTags, handleGetArticle } = this.props;
-        const id=this.props.location.query.id;
+        const { handleGetTags } = this.props;
         handleGetTags();
-        if(id !== undefined ){
-            handleGetArticle(id);
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const { articleContent } = nextProps;
-        if(Object.keys(articleContent).length>0){
-            // this.setState({
-            //     title: articleContent.title,
-            //     tags: articleContent.tags,
-            //     date: articleContent.date,
-            //     editorHtml: articleContent.editorHtml,
-            //     abstract: articleContent.abstract
-            // })
-        }
-
     }
 
 

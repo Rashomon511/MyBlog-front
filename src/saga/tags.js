@@ -40,6 +40,7 @@ function* CreateTags(action) {
     try {
         const data = yield call(createTag, action.payload);
         if(data.code === 200){
+            message.success('创建标签成功！');
             yield put({type: CREATE_TAG_SUCCESS,payload: true});
             yield put({type: REQUEST_TAGS})
         }else{
