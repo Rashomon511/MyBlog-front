@@ -31,8 +31,8 @@ export const submitResume = (data) => {
 };
 
 // 获取文章列表
-export const requestArticle = () => {
-    return fetch({url:'/getArticle', method: 'GET'})
+export const requestArticle = (data) => {
+    return fetch({url:`/getArticle?page=${data.page}`, method: 'GET'})
 };
 
 // 提交文章

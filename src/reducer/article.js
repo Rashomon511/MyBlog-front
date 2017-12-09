@@ -1,8 +1,9 @@
 import {handleActions} from 'redux-actions';
 
 const initState = {
-    articleList: [],
+    articleList: {},
     articleContent: {},
+    articlePage: '',
     requestState: false,
     submitState: false,
     deleteState: false,
@@ -15,6 +16,9 @@ const reducer = handleActions({
     }),
     SAVE_ARTICLE_CONTENT: (state,action) => ({
         ...state, articleContent: action.payload
+    }),
+    SAVE_ARTICLE_PAGE: (state,action) => ({
+        ...state, articlePage: action.payload
     }),
     REQUEST_ARTICLE_SUCCESS: (state,action) => ({
         ...state, requestState: action.payload

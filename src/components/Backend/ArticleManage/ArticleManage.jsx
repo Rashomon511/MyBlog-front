@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import {Table, Button, Modal } from 'antd';
+import {Table, Button, Modal, message } from 'antd';
 
 
 class ArticleManage extends React.Component {
@@ -19,7 +19,7 @@ class ArticleManage extends React.Component {
 
     componentDidMount(){
         const { handleRequestArticle } = this.props;
-        handleRequestArticle()
+        handleRequestArticle({page:1})
     }
 
     Editor = (e) => {
@@ -42,14 +42,23 @@ class ArticleManage extends React.Component {
     handleOk = () => {
         const { handleDeleteArticle } = this.props;
         const { id } = this.state;
-        handleDeleteArticle(id);
-        this.setState({
-            visible: false
-        })
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        if(auth){
+            handleDeleteArticle(id);
+            this.handleCancel();
+        } else {
+            message.warning('抱歉，您没有权限！');
+            this.handleCancel();
+        }
+    };
+
+    handleChange = (pagination) => {
+        const { handleRequestArticle } = this.props;
+        handleRequestArticle({page:pagination.current})
     };
 
     render() {
-        const {article} = this.props;
+        const {article, loading} = this.props;
         const {visible} = this.state;
         const columns = [{
             title: '文章名称',
@@ -85,23 +94,33 @@ class ArticleManage extends React.Component {
                 </div>
             ),
         }];
+        let data=[];
+        if(loading){
+            data=article.data.map((item,index)=>{
+                return {
+                    key:index,
+                    id: item._id,
+                    title: item.title,
+                    date: item.date,
+                    draft: item.draft
+                }
+            });
+        }
 
-        const data=article.map((item,index)=>{
-            return {
-                key:index,
-                id: item._id,
-                title: item.title,
-                date: item.date,
-                draft: item.draft
-            }
-        });
+        const paginationProps = {
+            showSizeChanger: false,
+            showQuickJumper: true,
+            ...{ total: article.total, pageSize: 10 },
+        };
         return (
             <div>
                 <Table
-                    pagination={false}
+                    pagination={paginationProps}
                     bordered
+                    loading={!loading}
                     columns={columns}
                     dataSource={data}
+                    onChange={this.handleChange}
                 />
                 <Modal
                     visible={visible}

@@ -52,26 +52,14 @@ class NewArticle extends React.Component {
     };
 
     saveArticle = () => {
-        const { title, tags, date, editorHtml, abstract } = this.state;
-        const { handleSubmitArticle } = this.props;
-        const auth = JSON.parse(localStorage.getItem('auth'));
-        const data={
-            title: title,
-            tags: tags,
-            date: date,
-            content: editorHtml,
-            abstract:abstract,
-            draft: true
-        };
-        if(auth){
-            handleSubmitArticle(data);
-            this.clearState();
-        } else {
-            message.warning('抱歉，您没有权限！');
-        }
+        this.Submit(true);
     };
 
     submitArticle = () => {
+        this.Submit(false);
+    };
+
+    Submit = (state) => {
         const { title, tags, date, editorHtml, abstract } = this.state;
         const { handleSubmitArticle } = this.props;
         const auth = JSON.parse(localStorage.getItem('auth'));
@@ -81,7 +69,8 @@ class NewArticle extends React.Component {
             date: date,
             content: editorHtml,
             abstract:abstract,
-            draft: false
+            draft: state,
+            id: ''
         };
         if(auth){
             handleSubmitArticle(data);

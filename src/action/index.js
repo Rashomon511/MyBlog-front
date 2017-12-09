@@ -42,6 +42,8 @@ export const save_article_list = createAction('SAVE_ARTICLE_LIST');
 
 export const save_article_content = createAction('SAVE_ARTICLE_CONTENT');
 
+export const save_article_page = createAction('SAVE_ARTICLE_PAGE');
+
 export const request_article_success = createAction('REQUEST_ARTICLE_SUCCESS');
 
 export const request_article_failed = createAction('REQUEST_ARTICLE_FAILED');

@@ -1,8 +1,9 @@
-import {put, call, takeEvery} from 'redux-saga/effects';
+import {put, call, takeEvery, select} from 'redux-saga/effects';
 import {message} from 'antd';
 
 import {
     SAVE_ARTICLE_LIST,
+    SAVE_ARTICLE_PAGE,
     SAVE_ARTICLE_CONTENT,
     REQUEST_ARTICLE,
     SUBMIT_ARTICLE,
@@ -19,11 +20,12 @@ import {
 } from '../action/actionType'
 import { requestArticle, submitArticle, deleteArticle, getArticleById } from "../controllers/index";
 
-function* RequestArticle() {
+function* RequestArticle(action) {
     try {
-        const data = yield call(requestArticle);
+        const data = yield call(requestArticle,action.payload);
         if(data.code === 200){
             yield put({type: SAVE_ARTICLE_LIST, payload: data.data});
+            yield put({type: SAVE_ARTICLE_PAGE, payload: action.payload.page});
             yield put({type: REQUEST_ARTICLE_SUCCESS,payload: true})
         }else{
             yield  put({type: REQUEST_ARTICLE_FAILED, payload: false })
@@ -44,7 +46,7 @@ function *SubmitArticle(action) {
         const data = yield call(submitArticle,action.payload);
         if(data.code === 200){
             yield put({type: SUBMIT_ARTICLE_SUCCESS,payload: true});
-            message.success('新建文章成功！');
+            message.success('提交文章成功！');
         }else{
             yield  put({type: SUBMIT_ARTICLE_FAILED, payload: false })
         }
@@ -82,7 +84,8 @@ function *DeleteArticle(action) {
     try {
         const data = yield call(deleteArticle,action.payload);
         if(data.code === 200){
-            yield  put({type: REQUEST_ARTICLE});
+            const page = yield select(state=>state.article.articlePage);
+            yield  put({type: REQUEST_ARTICLE,payload:{page:page}});
             yield put({type: DELETE_ARTICLE_SUCCESS,payload: true});
             message.success('删除文章成功！');
         }else{

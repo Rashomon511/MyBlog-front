@@ -5,7 +5,8 @@ import { request_article, delete_article } from "../../action/index";
 
 function mapStateToProps(state) {
     return {
-        article: state.article.articleList
+        article: state.article.articleList,
+        loading: state.article.requestState
     };
 }
 
