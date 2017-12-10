@@ -5,7 +5,8 @@ import { get_article_list } from '../../action';
 
 function mapStateToProps(state) {
     return {
-        articleList: state.article.lists
+        articleList: state.article.lists,
+        loading: state.article.getListState
     };
 }
 

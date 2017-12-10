@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Timeline } from 'antd';
+import { Timeline, Spin } from 'antd';
 import style from './TagList.less';
 
 class TagList extends React.Component {
@@ -60,12 +60,13 @@ class TagList extends React.Component {
 
     render() {
         const name = this.props.location.query.name;
+        const { loading } = this.props;
         return (
             <div className={style.tags}>
                 <p className={style.title}>Tags</p>
                 <hr/>
                 <span>{name}</span>
-                {this.renderLine()}
+                {loading ? this.renderLine():<Spin />}
             </div>
         )
     }
