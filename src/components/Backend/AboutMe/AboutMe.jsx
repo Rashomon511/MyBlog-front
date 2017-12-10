@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill';
 import style from './AboutMe.less';
 import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css'
+import resume from "../../../reducer/resume";
 
 class AboutMe extends React.Component {
     constructor(props) {
@@ -16,17 +17,23 @@ class AboutMe extends React.Component {
         requestResume();
     }
 
+    componentWillReceiveProps(nextProps){
+        const { resume } = nextProps;
+        this.setState({
+            editorHtml: resume.content
+        })
+    }
+
     handleChange = (html) => {
-        console.log(html);
         this.setState({editorHtml: html});
     };
 
     submitResume = () => {
       const { editorHtml } = this.state;
-      const { submitResume } = this.props;
+      const { submitResume, resume } = this.props;
       const auth = JSON.parse(localStorage.getItem('auth'));
       if(auth){
-          submitResume({content:editorHtml})
+          submitResume({content:editorHtml,id: resume._id})
       } else {
           message.warning('抱歉，您没有权限！');
       }

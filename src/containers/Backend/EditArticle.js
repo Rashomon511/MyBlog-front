@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import EditArticle from '../../components/Backend/EditArticle/EditArticle';
-import { request_tags,submit_article, get_article } from '../../action'
+import { request_tags,submit_article, get_article } from '../../action';
 
 function mapStateToProps(state) {
     return {

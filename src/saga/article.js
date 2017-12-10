@@ -3,12 +3,14 @@ import {message} from 'antd';
 
 import {
     SAVE_ARTICLE_LIST,
+    SAVE_ARTICLES_LIST,
     SAVE_ARTICLE_PAGE,
     SAVE_ARTICLE_CONTENT,
     REQUEST_ARTICLE,
     SUBMIT_ARTICLE,
     DELETE_ARTICLE,
     GET_ARTICLE,
+    GET_ARTICLE_LIST,
     REQUEST_ARTICLE_SUCCESS,
     REQUEST_ARTICLE_FAILED,
     SUBMIT_ARTICLE_SUCCESS,
@@ -17,15 +19,17 @@ import {
     DELETE_ARTICLE_FAILED,
     GET_ARTICLE_SUCCESS,
     GET_ARTICLE_FAILED,
+    GET_LIST_SUCCESS,
+    GET_LIST_FAILED
 } from '../action/actionType'
-import { requestArticle, submitArticle, deleteArticle, getArticleById } from "../controllers/index";
+import { requestArticle, submitArticle, deleteArticle, getArticleById, getArticleList } from "../controllers/index";
 
 function* RequestArticle(action) {
     try {
         const data = yield call(requestArticle,action.payload);
         if(data.code === 200){
             yield put({type: SAVE_ARTICLE_LIST, payload: data.data});
-            yield put({type: SAVE_ARTICLE_PAGE, payload: action.payload.page});
+            yield put({type: SAVE_ARTICLE_PAGE, payload: action.payload});
             yield put({type: REQUEST_ARTICLE_SUCCESS,payload: true})
         }else{
             yield  put({type: REQUEST_ARTICLE_FAILED, payload: false })
@@ -84,8 +88,8 @@ function *DeleteArticle(action) {
     try {
         const data = yield call(deleteArticle,action.payload);
         if(data.code === 200){
-            const page = yield select(state=>state.article.articlePage);
-            yield  put({type: REQUEST_ARTICLE,payload:{page:page}});
+            const articlePage = yield select(state=>state.article.articlePage);
+            yield  put({type: REQUEST_ARTICLE,payload:{page:articlePage.page,draft:articlePage.draft}});
             yield put({type: DELETE_ARTICLE_SUCCESS,payload: true});
             message.success('删除文章成功！');
         }else{
@@ -99,4 +103,23 @@ function *DeleteArticle(action) {
 
 export function* watchDeleteArticle() {
     yield takeEvery(DELETE_ARTICLE, DeleteArticle);
+}
+
+function *GetArticleList(action) {
+    try {
+        const data = yield call(getArticleList,action.payload);
+        if(data.code === 200){
+            yield put({type: SAVE_ARTICLES_LIST, payload: data.data});
+            yield put({type: GET_LIST_SUCCESS,payload: true})
+        }else{
+            yield  put({type: GET_LIST_FAILED, payload: false })
+        }
+    }
+    catch (err){
+        yield  put({type: GET_LIST_FAILED, payload: false })
+    }
+}
+
+export function* watchGetArticleList() {
+    yield takeEvery(GET_ARTICLE_LIST, GetArticleList);
 }

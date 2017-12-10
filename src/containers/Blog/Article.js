@@ -1,12 +1,15 @@
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Article from '../../components/Blog/Content/ArticleList/Article/Article';
 
 function mapStateToProps() {
-    return {};
+    return {
+    };
 }
 
 function mapDispatchToProps() {
-    return {};
+    return {
+    };
 }
 
 

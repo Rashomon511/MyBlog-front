@@ -1,5 +1,5 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
-
+import {message} from 'antd';
 import {
     SAVE_RESUME,
     REQUEST_RESUME,
@@ -35,6 +35,7 @@ function *SubmitResume(action) {
     try {
         const data = yield call(submitResume,action.payload);
         if(data.code === 200){
+            message.success('提交简历成功！');
             yield  put({type: REQUEST_RESUME});
             yield put({type: SUBMIT_RESUME_SUCCESS,payload: true})
         }else{

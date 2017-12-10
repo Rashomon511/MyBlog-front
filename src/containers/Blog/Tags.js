@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        handleGetTags: bindActionCreators(request_tags, dispatch),
+        handleGetTags: bindActionCreators(request_tags, dispatch)
     };
 }
 

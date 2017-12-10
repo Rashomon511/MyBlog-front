@@ -3,16 +3,21 @@ import {handleActions} from 'redux-actions';
 const initState = {
     articleList: {},
     articleContent: {},
+    lists: [],
     articlePage: '',
     requestState: false,
     submitState: false,
     deleteState: false,
-    getState: false
+    getState: false,
+    getListState: false
 };
 
 const reducer = handleActions({
     SAVE_ARTICLE_LIST: (state,action) => ({
         ...state, articleList: action.payload
+    }),
+    SAVE_ARTICLES_LIST: (state,action) => ({
+        ...state, lists: action.payload
     }),
     SAVE_ARTICLE_CONTENT: (state,action) => ({
         ...state, articleContent: action.payload
@@ -43,6 +48,12 @@ const reducer = handleActions({
     }),
     GET_ARTICLE_FAILED: (state,action) => ({
         ...state, getState: action.payload
+    }),
+    GET_LIST_SUCCESS: (state,action) => ({
+        ...state, getListState: action.payload
+    }),
+    GET_LIST_FAILED: (state,action) => ({
+        ...state, getListState: action.payload
     }),
 }, initState);
 

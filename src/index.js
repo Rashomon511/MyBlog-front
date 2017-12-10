@@ -6,7 +6,7 @@ import App from './App';
 import Index from './containers/Blog/index'; // 博客展示页面
 import Tags from './containers/Blog/Tags'; // 博客展示标签页面
 import AboutMe from './containers/Blog/Resume'; // 我的简历
-import ArticleList from './containers/Blog/ArticleList'; // 文章列表
+import ArticleList from './containers/Blog/ArticleList'; // 文章大概内容展示
 import TagList from './containers/Blog/TagList'; //标签列表
 import ArticleContent from './containers/Blog/ArticleContent'; //文章具体内容
 import Login from './containers/Backend/Login'; //登陆页面

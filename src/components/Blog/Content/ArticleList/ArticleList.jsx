@@ -8,12 +8,22 @@ class ArticleList extends React.Component {
         super(props);
         this.state = {};
     }
+    componentDidMount(){
+        const { handleRequestArticle, handleGetTags} = this.props;
+        handleGetTags();
+        handleRequestArticle({page:1, draft: false });
+    }
 
     render() {
+        const { article, loading, handleRequestArticle, allTags } = this.props;
         return (
             <div className={style.articleList}>
-                    <Article/>
-                    <Article/>
+                <Article
+                    article={article}
+                    loading={loading}
+                    allTags={allTags}
+                    handleRequestArticle={handleRequestArticle}
+                />
             </div>
         )
     }

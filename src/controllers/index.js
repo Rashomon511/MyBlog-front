@@ -27,12 +27,12 @@ export const requestResume = () => {
 
 // 提交简历
 export const submitResume = (data) => {
-    return fetch({url:'/saveResume', method: 'POST', data})
+    return fetch({url:`/saveResume`, method: 'POST', data})
 };
 
 // 获取文章列表
 export const requestArticle = (data) => {
-    return fetch({url:`/getArticle?page=${data.page}`, method: 'GET'})
+    return fetch({url:`/getArticle?page=${data.page}&&draft=${data.draft}`, method: 'GET'})
 };
 
 // 提交文章
@@ -48,4 +48,9 @@ export const deleteArticle = (data) => {
 // 编辑文章
 export const getArticleById = (data) => {
     return fetch({url:`/getArticleById?id=${data}`, method: 'GET'})
+};
+
+// 通过标签获取文章列表
+export const getArticleList = (data) => {
+    return fetch({url:`/getArticleList?id=${data.id}`, method: 'GET'})
 };

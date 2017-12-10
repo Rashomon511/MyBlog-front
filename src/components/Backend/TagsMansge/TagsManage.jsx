@@ -101,7 +101,7 @@ class TagsManage extends React.Component {
                 id: item._id,
                 tag: item.content
             }
-        })
+        });
 
         return (
             <div>

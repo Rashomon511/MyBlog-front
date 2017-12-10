@@ -19,7 +19,7 @@ class ArticleManage extends React.Component {
 
     componentDidMount(){
         const { handleRequestArticle } = this.props;
-        handleRequestArticle({page:1})
+        handleRequestArticle({page:1, draft:''})
     }
 
     Editor = (e) => {
@@ -54,7 +54,7 @@ class ArticleManage extends React.Component {
 
     handleChange = (pagination) => {
         const { handleRequestArticle } = this.props;
-        handleRequestArticle({page:pagination.current})
+        handleRequestArticle({page:pagination.current, draft: ''})
     };
 
     render() {
@@ -131,7 +131,7 @@ class ArticleManage extends React.Component {
                         <Button key="back" size="large" onClick={this.handleCancel}>取消</Button>,
                         <Button key="submit" type="primary" size="large" onClick={this.handleOk}>
                             确认
-                        </Button>,
+                        </Button>
                     ]}
                 >
                     您将要删除该文章

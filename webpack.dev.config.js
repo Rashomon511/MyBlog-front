@@ -70,11 +70,13 @@ module.exports = {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: ['file-loader']
             },//加载字体
-        ]
+        ],
+        noParse: /node_modules\/quill\/dist/
     },
     resolve: {
         extensions: ['.js', '.json', '.jsx', '.less']
     },
+
     //devtool: 'eval-source-map',
     //devtool: 'cheap-module-eval-source-map',
     plugins: [

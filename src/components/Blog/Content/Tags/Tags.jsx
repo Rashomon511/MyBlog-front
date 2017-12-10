@@ -19,7 +19,7 @@ class Tags extends React.Component {
 
     onClick = (e) =>{
         const self=e.currentTarget;
-        return this.context.router.push('/main/tagList/?id='+self.id+'?name='+self.innerHTML);
+        return this.context.router.push('/main/tagList/?id='+self.id+'&name='+self.innerHTML);
     };
 
     renderTag = () => {
