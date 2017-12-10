@@ -52,5 +52,5 @@ export const getArticleById = (data) => {
 
 // 通过标签获取文章列表
 export const getArticleList = (data) => {
-    return fetch({url:`/getArticleList?id=${data.id}`, method: 'GET'})
+    return fetch({url:`/getArticleList?id=${data.id}&&page=${data.page}`, method: 'GET'})
 };

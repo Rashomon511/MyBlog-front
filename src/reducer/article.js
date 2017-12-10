@@ -3,7 +3,7 @@ import {handleActions} from 'redux-actions';
 const initState = {
     articleList: {},
     articleContent: {},
-    lists: [],
+    lists: {},
     articlePage: '',
     requestState: false,
     submitState: false,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Timeline, Spin } from 'antd';
+import { Timeline, Spin, Pagination } from 'antd';
 import style from './TagList.less';
 
 class TagList extends React.Component {
@@ -17,7 +17,7 @@ class TagList extends React.Component {
     componentDidMount(){
         const id = this.props.location.query.id;
         const { handleGetArticle } = this.props;
-        handleGetArticle({id:id})
+        handleGetArticle({page:1,id:id})
     }
 
     goArticle = (id) => {
@@ -26,7 +26,7 @@ class TagList extends React.Component {
 
     renderList = () => {
         const { articleList } = this.props;
-        const timeLine= articleList.map((item,index)=>{
+        const timeLine= articleList.list.map((item,index)=>{
             return (
                     <Timeline.Item
                         key={index}
@@ -43,7 +43,7 @@ class TagList extends React.Component {
 
     renderLine = () => {
         const { articleList } = this.props;
-        if(articleList.length === 0){
+        if(articleList.list.length === 0){
             return (
                 <div>
                     该标签下没有文章！
@@ -58,6 +58,29 @@ class TagList extends React.Component {
         }
     };
 
+    pageChange =(page) => {
+        const { handleGetArticle } = this.props;
+        const id = this.props.location.query.id;
+        handleGetArticle({page:page,id:id})
+    };
+
+    renderPage = () => {
+      const { articleList } = this.props;
+      if(articleList.total<=10){
+          return ''
+      } else {
+          return (
+              <Pagination
+                  simple
+                  onChange={this.pageChange}
+                  pageSize={10}
+                  defaultCurrent={1}
+                  total={articleList.total}
+              />
+          )
+      }
+    };
+
     render() {
         const name = this.props.location.query.name;
         const { loading } = this.props;
@@ -67,6 +90,7 @@ class TagList extends React.Component {
                 <hr/>
                 <span>{name}</span>
                 {loading ? this.renderLine():<Spin />}
+                {this.renderPage()}
             </div>
         )
     }
