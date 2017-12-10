@@ -64,7 +64,7 @@ class Article extends React.Component {
                                 日期：<span>{moment(item.date).format('YYYY-MM-DD HH:mm')}</span>
                             </p>
                             <div className={style.articleContent}>
-                                {item.abstract}
+                                {item.abstract.substring(0,150)}
                             </div>
                         </div>
                         <div className={style.more}>
