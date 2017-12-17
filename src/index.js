@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import App from './App';
-import Index from './containers/Blog/index'; // 博客展示页面
+import Index from './components/Blog/index'; // 博客展示页面
 import Tags from './containers/Blog/Tags'; // 博客展示标签页面
 import AboutMe from './containers/Blog/Resume'; // 我的简历
 import ArticleList from './containers/Blog/ArticleList'; // 文章大概内容展示
