@@ -21,7 +21,7 @@ class ArticleContent extends React.Component {
         const {handleGetArticle, handleGetComment} = this.props;
         const id = this.props.location.query.id;
         handleGetArticle(id);
-        // handleGetComment(id)
+        handleGetComment(id)
     }
 
     // showhtml = (record) => {
@@ -50,18 +50,38 @@ class ArticleContent extends React.Component {
     submitComment = () => {
         const { comment } = this.state;
         const { handleSubmitComment } = this.props;
-        const visitor = localStorage.getItem('visitor');
-        if(JSON.parse(visitor) === null) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const visitor = JSON.parse(localStorage.getItem('visitor'));
+        if(!visitor) {
             message.warning('请输入您的昵称和邮箱！');
             this.setState({
                 show: true
-            })
+            });
+            return false;
+        } else if (comment.length < 8) {
+            message.warning('留言长度不能小于8！');
+            return false;
         } else {
-            handleSubmitComment(comment);
+            const data = {
+                articleId: this.props.location.query.id,
+                replyId: '',
+                toUserName: this.isAdmin() ? user.userName : visitor.userName,
+                email: this.isAdmin() ? '1075843579@qq.com' : visitor.email,
+                isAdmin: this.isAdmin(),
+                content: comment,
+                state: false,
+            };
+            handleSubmitComment(data);
             this.setState({
                 comment: ''
             })
         }
+    };
+
+    isAdmin = () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const isAdmin = (user !== null && user.userName === 'Rashomon') ? true : false;
+        return isAdmin;
     };
 
     submitUserInfo = () => {
@@ -69,9 +89,9 @@ class ArticleContent extends React.Component {
         const reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
         if (!(reg.test(email))) {
             message.warning('请输入正确的邮箱格式')
-        } if(userName === '' || userName.length < 5) {
-            message.warning('昵称不能为空或长度小于5')
-        } else if((reg.test(email))&& userName.length > 5 ) {
+        } if(userName === '' || userName.length < 3) {
+            message.warning('昵称不能为空或长度小于3')
+        } else if((reg.test(email))&& userName.length > 3 ) {
             const data={
                 userName: userName,
                 email: email,

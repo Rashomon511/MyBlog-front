@@ -54,3 +54,13 @@ export const getArticleById = (data) => {
 export const getArticleList = (data) => {
     return fetch({url:`/getArticleList?id=${data.id}&&page=${data.page}`, method: 'GET'})
 };
+
+// 获取留言
+export const requestComment = (data) => {
+    return fetch({url:`/getComment/?id=${data}`, method: 'GET'})
+};
+
+// 提交留言
+export const submitComment = (data) => {
+    return fetch({url:`/saveComment`, method: 'POST', data})
+};

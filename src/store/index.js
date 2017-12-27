@@ -6,20 +6,23 @@ import login from '../reducer/login';
 import tags from '../reducer/tags';
 import resume from '../reducer/resume';
 import article from '../reducer/article';
+import comment from '../reducer/comment';
 import rootSagas from '../saga/index';
 
 const initState = {
     login:login.initState,
     tags:tags.initState,
     resume: resume.initState,
-    article:article.initState
+    article:article.initState,
+    comment:comment.initState,
 };
 
 const reducers = {
     login:login.reducer,
     tags:tags.reducer,
     resume:resume.reducer,
-    article:article.reducer
+    article:article.reducer,
+    comment:comment.reducer,
 };
 
 const sagaMiddleware = createSagaMiddleware();

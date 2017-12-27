@@ -68,6 +68,21 @@ export const get_list_success = createAction('GET_LIST_SUCCESS');
 
 export const get_list_failed = createAction('GET_LIST_FAILED');
 
+// 留言
+export const get_comment = createAction('GET_COMMENT');
+
+export const submit_comment = createAction('SUBMIT_COMMENT');
+
+export const save_comment = createAction('SAVE_COMMENT');
+
+export const get_comment_success = createAction('GET_COMMENT_SUCCESS');
+
+export const get_comment_failed = createAction('GET_COMMENT_FAILED');
+
+export const submit_comment_success = createAction('SUBMIT_COMMENT_SUCCESS');
+
+export const submit_comment_failed = createAction('SUBMIT_COMMENT_FAILED');
+
 // 简历
 export const request_resume = createAction('REQUEST_RESUME');
 
