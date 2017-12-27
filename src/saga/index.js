@@ -2,7 +2,7 @@ import { fork } from 'redux-saga/effects'
 import {watchLogin} from './login';
 import {watchTags, watchCreateTag, watchDeleteTag} from './tags';
 import {watchRequestResume,watchSubmitResume} from './resume';
-import {watchSubmitComment,watchRequestComment} from './comment';
+import {watchSubmitComment,watchRequestComment,watchGetComment,watchChangeComment,watchDeleteComment} from './comment';
 import {watchRequestArticle,watchSubmitArticle,watchDeleteArticle,watchGetArticleById,watchGetArticleList} from './article';
 export default function* rootSaga() {
     yield [
@@ -18,6 +18,9 @@ export default function* rootSaga() {
         fork(watchDeleteArticle),
         fork(watchGetArticleList),
         fork(watchRequestComment),
-        fork(watchSubmitComment)
+        fork(watchSubmitComment),
+        fork(watchDeleteComment),
+        fork(watchGetComment),
+        fork(watchChangeComment)
     ]
 }

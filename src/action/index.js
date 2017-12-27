@@ -71,9 +71,19 @@ export const get_list_failed = createAction('GET_LIST_FAILED');
 // 留言
 export const get_comment = createAction('GET_COMMENT');
 
+export const get_all_comment = createAction('GET_ALL_COMMENT');
+
 export const submit_comment = createAction('SUBMIT_COMMENT');
 
+export const delete_comment = createAction('DELETE_COMMENT');
+
+export const change_state = createAction('CHANGE_STATE');
+
+export const save_page = createAction('SAVE_PAGE');
+
 export const save_comment = createAction('SAVE_COMMENT');
+
+export const save_all_comment = createAction('SAVE_ALL_COMMENT');
 
 export const get_comment_success = createAction('GET_COMMENT_SUCCESS');
 
@@ -82,6 +92,18 @@ export const get_comment_failed = createAction('GET_COMMENT_FAILED');
 export const submit_comment_success = createAction('SUBMIT_COMMENT_SUCCESS');
 
 export const submit_comment_failed = createAction('SUBMIT_COMMENT_FAILED');
+
+export const get_all_comment_success = createAction('GET_ALL_COMMENT_SUCCESS');
+
+export const get_all_comment_failed = createAction('GET_ALL_COMMENT_FAILED');
+
+export const delete_comment_success = createAction('DELETE_COMMENT_SUCCESS');
+
+export const delete_comment_failed = createAction('DELETE_COMMENT_FAILED');
+
+export const change_state_success = createAction('CHANGE_STATE_SUCCESS');
+
+export const change_state_failed = createAction('CHANGE_STATE_FAILED');
 
 // 简历
 export const request_resume = createAction('REQUEST_RESUME');

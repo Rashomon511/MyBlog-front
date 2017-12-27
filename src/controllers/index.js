@@ -55,7 +55,7 @@ export const getArticleList = (data) => {
     return fetch({url:`/getArticleList?id=${data.id}&&page=${data.page}`, method: 'GET'})
 };
 
-// 获取留言
+// 获取留言通过id
 export const requestComment = (data) => {
     return fetch({url:`/getComment/?id=${data}`, method: 'GET'})
 };
@@ -63,4 +63,19 @@ export const requestComment = (data) => {
 // 提交留言
 export const submitComment = (data) => {
     return fetch({url:`/saveComment`, method: 'POST', data})
+};
+
+// 获取所有留言
+export const getComment = (data) => {
+    return fetch({url:`/getAllComment/?page=${data.page}`, method: 'GET'})
+};
+
+// 删除留言
+export const deleteComment = (data) => {
+    return fetch({url:`/deleteComment/?id=${data}`, method: 'GET'})
+};
+
+// 修改留言的状态
+export const changeComment = (data) => {
+    return fetch({url:`/changeState/?id=${data.id}&&state=${data.state}`, method: 'GET'})
 };
