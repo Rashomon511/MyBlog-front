@@ -10,7 +10,9 @@ class ArticleContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            commentList:[],
             comment: '',
+            reply:'',
             userName: '',
             email: '',
             show: false
@@ -24,6 +26,11 @@ class ArticleContent extends React.Component {
         handleGetComment(id)
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            commentList: nextProps.comment
+        })
+    }
     // showhtml = (record) => {
     //     let html = {__html: record};
     //     return <div dangerouslySetInnerHTML={html}></div>;
@@ -32,6 +39,12 @@ class ArticleContent extends React.Component {
     onChange = (e) => {
         this.setState({
             comment: e.target.value
+        })
+    };
+
+    onChangeReply = (e) => {
+        this.setState({
+            reply: e.target.value
         })
     };
 
@@ -78,6 +91,38 @@ class ArticleContent extends React.Component {
         }
     };
 
+    ReplyComment = (id) => {
+        const { reply } = this.state;
+        const { handleSubmitComment } = this.props;
+        const user = JSON.parse(localStorage.getItem('user'));
+        const visitor = JSON.parse(localStorage.getItem('visitor'));
+        if(!visitor) {
+            message.warning('请输入您的昵称和邮箱！');
+            this.setState({
+                show: true
+            });
+            return false;
+        } else if (reply.length < 8) {
+            message.warning('留言长度不能小于8！');
+            return false;
+        } else {
+            const data = {
+                articleId: this.props.location.query.id,
+                replyId: id,
+                toUserName: this.isAdmin() ? user.userName : visitor.userName,
+                email: this.isAdmin() ? '1075843579@qq.com' : visitor.email,
+                isAdmin: this.isAdmin(),
+                content: reply,
+                state: false,
+            };
+            console.log(data);
+            handleSubmitComment(data);
+            this.setState({
+                reply: ''
+            })
+        }
+    };
+
     isAdmin = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         const isAdmin = (user !== null && user.userName === 'Rashomon') ? true : false;
@@ -101,7 +146,17 @@ class ArticleContent extends React.Component {
                 show: false
             })
         }
+    };
 
+    onReply = (index) => {
+        const { commentList } = this.state;
+        commentList.forEach((item)=>{
+            item.reply=false;
+        });
+        commentList[index].reply = true;
+        this.setState({
+            commentList
+        })
     };
 
     renderSubmit = () => {
@@ -119,6 +174,28 @@ class ArticleContent extends React.Component {
                     type='primary'
                     size="large"
                     onClick={this.submitComment}
+                >
+                    提交
+                </Button>
+            </div>
+        )
+    };
+
+    renderReply = (id) => {
+        return (
+            <div className={style.ReplyBox}>
+                <Input
+                    size="large"
+                    placeholder="提交留言"
+                    value={this.state.reply}
+                    style={{width: '80%', marginRight: 20 }}
+                    onChange={this.onChangeReply}
+                    onPressEnter={()=>this.ReplyComment(id)}
+                />
+                <Button
+                    type='primary'
+                    size="large"
+                    onClick={()=>this.ReplyComment(id)}
                 >
                     提交
                 </Button>
@@ -154,6 +231,26 @@ class ArticleContent extends React.Component {
        )
     };
 
+    renderComment = () => {
+        const { commentList } = this.state;
+        const comments = commentList.map((item,index)=>{
+            return (
+                <div key={item._id} className={style.commentBox}>
+                    <p>
+                        <span className={style.name}>{item.toUserName}</span>
+                        <span> · {moment(item.replyTime).format("YYYY-MM-DD HH:mm")} · </span>
+                        <span className={style.reply} onClick={()=>this.onReply(index)}>回复</span>
+                    </p>
+                    <p className={style.message}>
+                        <span>{item.content}</span>
+                    </p>
+                    {item.reply ? this.renderReply(item._id): null}
+                </div>
+            )
+        })
+        return comments;
+    }
+
     render() {
         const { articleContent } = this.props;
         const { show } = this.state;
@@ -179,6 +276,7 @@ class ArticleContent extends React.Component {
                 <div className={style.comment}>
                     {show ? this.renderVisitor() : null}
                     {!show ? this.renderSubmit() : null}
+                    {this.renderComment()}
                 </div>
             </div>
         )

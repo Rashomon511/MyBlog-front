@@ -26,7 +26,11 @@ function* RequestComment(action) {
     try {
         const data = yield call(requestComment, action.payload);
         if(data.code === 200){
-            yield put({type: SAVE_COMMENT, payload: data.data});
+            const comment = data.data.concat();
+            comment.forEach((item)=>{
+                item.reply = false;
+            });
+            yield put({type: SAVE_COMMENT, payload: comment});
             yield put({type: GET_COMMENT_SUCCESS,payload: true})
         }else{
             yield  put({type: GET_COMMENT_FAILED, payload: false })
