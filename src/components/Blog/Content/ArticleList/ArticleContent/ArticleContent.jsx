@@ -115,7 +115,6 @@ class ArticleContent extends React.Component {
                 content: reply,
                 state: false,
             };
-            console.log(data);
             handleSubmitComment(data);
             this.setState({
                 reply: ''
@@ -231,20 +230,40 @@ class ArticleContent extends React.Component {
        )
     };
 
+    renderChild = (data) => {
+        const reply = data.map((item)=>{
+            return (
+                <div key={item._id} className={style.childComment}>
+                    <p>
+                        <span className={style.name}>{item.toUserName}</span>
+                        <span> · {moment(item.replyTime).format("YYYY-MM-DD HH:mm")}</span>
+                    </p>
+                    <p>
+                        <span>{item.content}</span>
+                    </p>
+                </div>
+            )
+        });
+        return reply;
+    };
+
     renderComment = () => {
         const { commentList } = this.state;
         const comments = commentList.map((item,index)=>{
             return (
-                <div key={item._id} className={style.commentBox}>
-                    <p>
-                        <span className={style.name}>{item.toUserName}</span>
-                        <span> · {moment(item.replyTime).format("YYYY-MM-DD HH:mm")} · </span>
-                        <span className={style.reply} onClick={()=>this.onReply(index)}>回复</span>
-                    </p>
-                    <p className={style.message}>
-                        <span>{item.content}</span>
-                    </p>
-                    {item.reply ? this.renderReply(item._id): null}
+                <div key={item._id} className={style.Box}>
+                    <div className={style.commentBox}>
+                        <p>
+                            <span className={style.name}>{item.toUserName}</span>
+                            <span> · {moment(item.replyTime).format("YYYY-MM-DD HH:mm")} · </span>
+                            <span className={style.reply} onClick={()=>this.onReply(index)}>回复</span>
+                        </p>
+                        <p className={style.message}>
+                            <span>{item.content}</span>
+                        </p>
+                        {item.reply ? this.renderReply(item._id): null}
+                    </div>
+                    {item.childReply.length>0 ? this.renderChild(item.childReply) : null }
                 </div>
             )
         })
