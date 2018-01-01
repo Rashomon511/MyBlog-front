@@ -15,7 +15,9 @@ class ErrorPage extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
-               <Button onClick={this.Click} className={style.btn} type='primary'>返回首页</Button>
+                <div className={style.btn}>
+                    <Button onClick={this.Click} type='primary'>返回首页</Button>
+                </div>
             </div>
         );
     }

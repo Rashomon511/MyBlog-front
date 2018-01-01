@@ -167,7 +167,7 @@ class MsgManage extends React.Component {
                 key: index,
                 index: index+1,
                 id: item._id,
-                userName: item.toUserNam,
+                userName: item.toUserName,
                 email: item.email,
                 content: item.content,
                 state: item.state,

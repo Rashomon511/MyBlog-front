@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { message } from 'antd';
 
 const fetch = axios.create({
-    baseURL: 'http://192.168.1.113:3001', // api的base_url
+    baseURL: 'http://192.168.0.107:3001', // api的base_url
     timeout: 500000                  // 请求超时时间
 });
 
@@ -19,7 +19,7 @@ fetch.interceptors.request.use(config => {
     // Do something with request error
     console.log(error); // for debug
     Promise.reject(error)
-})
+});
 
 // respone拦截器
 fetch.interceptors.response.use(
