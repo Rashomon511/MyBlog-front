@@ -83,6 +83,8 @@ export const save_page = createAction('SAVE_PAGE');
 
 export const save_comment = createAction('SAVE_COMMENT');
 
+export const save_number = createAction('SAVE_NUMBER');
+
 export const save_all_comment = createAction('SAVE_ALL_COMMENT');
 
 export const get_comment_success = createAction('GET_COMMENT_SUCCESS');

@@ -7,6 +7,7 @@ function mapStateToProps(state) {
     return {
         articleContent: state.article.articleContent,
         comment: state.comment.comment,
+        total: state.comment.total
     };
 }
 

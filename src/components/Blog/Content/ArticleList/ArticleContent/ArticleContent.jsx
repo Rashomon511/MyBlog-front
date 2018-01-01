@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Input, Button, message } from 'antd';
+import { Input, Button, message, Pagination } from 'antd';
 import style from './ArticleContent.less';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
@@ -23,7 +23,7 @@ class ArticleContent extends React.Component {
         const {handleGetArticle, handleGetComment} = this.props;
         const id = this.props.location.query.id;
         handleGetArticle(id);
-        handleGetComment(id)
+        handleGetComment({page:1,id:id})
     }
 
     componentWillReceiveProps(nextProps){
@@ -31,6 +31,12 @@ class ArticleContent extends React.Component {
             commentList: nextProps.comment
         })
     }
+
+    pageChange =(page) => {
+        const { handleGetComment } = this.props;
+        const id = this.props.location.query.id;
+        handleGetComment({page:page,id:id})
+    };
     // showhtml = (record) => {
     //     let html = {__html: record};
     //     return <div dangerouslySetInnerHTML={html}></div>;
@@ -266,9 +272,27 @@ class ArticleContent extends React.Component {
                     {item.childReply.length>0 ? this.renderChild(item.childReply) : null }
                 </div>
             )
-        })
+        });
         return comments;
-    }
+    };
+
+    renderPage = () => {
+        const { total } = this.props;
+        if(total<=10){
+            return ''
+        } else {
+            return (
+                <div className={style.page}>
+                    <Pagination
+                        onChange={this.pageChange}
+                        pageSize={10}
+                        defaultCurrent={1}
+                        total={total}
+                    />
+                </div>
+            )
+        }
+    };
 
     render() {
         const { articleContent } = this.props;
@@ -296,6 +320,7 @@ class ArticleContent extends React.Component {
                     {show ? this.renderVisitor() : null}
                     {!show ? this.renderSubmit() : null}
                     {this.renderComment()}
+                    {this.renderPage()}
                 </div>
             </div>
         )

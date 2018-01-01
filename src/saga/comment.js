@@ -2,6 +2,7 @@ import {put, call, takeEvery, select} from 'redux-saga/effects';
 import {message} from 'antd';
 import {
     SAVE_COMMENT,
+    SAVE_NUMBER,
     SAVE_ALL_COMMENT,
     GET_COMMENT,
     GET_ALL_COMMENT,
@@ -26,11 +27,12 @@ function* RequestComment(action) {
     try {
         const data = yield call(requestComment, action.payload);
         if(data.code === 200){
-            const comment = data.data.concat();
+            const comment = data.data.data.concat();
             comment.forEach((item)=>{
                 item.reply = false;
             });
             yield put({type: SAVE_COMMENT, payload: comment});
+            yield put({type: SAVE_NUMBER, payload: data.data.total});
             yield put({type: GET_COMMENT_SUCCESS,payload: true})
         }else{
             yield  put({type: GET_COMMENT_FAILED, payload: false })

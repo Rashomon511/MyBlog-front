@@ -3,6 +3,7 @@ import {handleActions} from 'redux-actions';
 const initState = {
     comment: [],
     allComment: {},
+    total:0,
     page: {},
     getAllState: false,
     requestState: false,
@@ -14,6 +15,9 @@ const initState = {
 const reducer = handleActions({
     SAVE_COMMENT: (state,action) => ({
         ...state, comment: action.payload
+    }),
+    SAVE_NUMBER: (state,action) => ({
+        ...state, total: action.payload
     }),
     SAVE_ALL_COMMENT: (state,action) => ({
         ...state, allComment: action.payload

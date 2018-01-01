@@ -57,7 +57,7 @@ export const getArticleList = (data) => {
 
 // 获取留言通过id
 export const requestComment = (data) => {
-    return fetch({url:`/getComment/?id=${data}`, method: 'GET'})
+    return fetch({url:`/getComment/?id=${data.id}&page=${data.page}`, method: 'GET'})
 };
 
 // 提交留言
