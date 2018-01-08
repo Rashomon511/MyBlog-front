@@ -77,8 +77,8 @@ class ArticleContent extends React.Component {
                 show: true
             });
             return false;
-        } else if (comment.length < 8) {
-            message.warning('留言长度不能小于8！');
+        } else if (comment.length < 6) {
+            message.warning('留言长度不能小于6！');
             return false;
         } else {
             const data = {
@@ -108,8 +108,8 @@ class ArticleContent extends React.Component {
                 show: true
             });
             return false;
-        } else if (reply.length < 8) {
-            message.warning('留言长度不能小于8！');
+        } else if (reply.length < 6) {
+            message.warning('留言长度不能小于6！');
             return false;
         } else {
             const data = {
