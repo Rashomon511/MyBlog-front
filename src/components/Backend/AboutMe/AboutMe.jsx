@@ -4,7 +4,6 @@ import ReactQuill from 'react-quill';
 import style from './AboutMe.less';
 import {modules,formats} from '../../../config/config';
 import 'react-quill/dist/quill.snow.css'
-import resume from "../../../reducer/resume";
 
 class AboutMe extends React.Component {
     constructor(props) {
