@@ -86,11 +86,12 @@ class TagList extends React.Component {
         const { loading } = this.props;
         return (
             <div className={style.tags}>
-                <p className={style.title}>Tags</p>
+                <p className={style.title}>{name}</p>
                 <hr/>
-                <span>{name}</span>
-                {loading ? this.renderLine():<Spin />}
-                {this.renderPage()}
+                <div className={style.listWrap}>
+                    {loading ? this.renderLine():<Spin />}
+                    {this.renderPage()}
+                </div>
             </div>
         )
     }

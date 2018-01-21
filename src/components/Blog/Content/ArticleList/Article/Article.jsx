@@ -85,6 +85,19 @@ class Article extends React.Component {
         return allArticle;
     };
 
+    renderPage = (total)  => {
+        if(total<5) return;
+        return (
+            <div className={style.page}>
+                <Pagination
+                    onChange={this.pageChange}
+                    pageSize={5}
+                    total={article.total}
+                />
+            </div>
+        )
+    };
+
     pageChange =(page) => {
         const { handleRequestArticle } = this.props;
         handleRequestArticle({page:page,draft:false})
@@ -96,13 +109,7 @@ class Article extends React.Component {
             return (
                 <div>
                     {this.renderArticle()}
-                    <div className={style.page}>
-                        <Pagination
-                            onChange={this.pageChange}
-                            pageSize={5}
-                            total={article.total}
-                        />
-                    </div>
+                    {this.renderPage(article.total)}
                 </div>
             )
         }else {
