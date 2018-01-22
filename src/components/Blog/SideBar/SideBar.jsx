@@ -11,6 +11,10 @@ class SideBar extends React.Component {
         this.state = {};
     }
 
+    goPage = () => {
+        console.log(11)
+        window.open('https://github.com/LuoShengMen')
+    };
 
     render() {
         let urlPath = browserHistory.getCurrentLocation().pathname;
@@ -18,7 +22,7 @@ class SideBar extends React.Component {
             <div className={style.wrap}>
                 <div className={style.avatarWrap}>
                     <div className={style.avatar}></div>
-                    <div className={style.text}><span>以全栈为目标的前端——魑魅魍魉</span></div>
+                    <div className={style.text}><span onClick={this.goPage()}>以全栈为目标的前端——魑魅魍魉</span></div>
                     <div className={style.address}>四川——成都</div>
                 </div>
                 <div className={style.resume}>
