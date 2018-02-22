@@ -89,6 +89,7 @@ module.exports = {
             template: 'public/index.html'
         }),
         new ExtractTextPlugin('style.css', { allChunks: true }),
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new ProgressBarPlugin()
     ],
