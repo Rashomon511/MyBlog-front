@@ -12,8 +12,8 @@ class SideBar extends React.Component {
     }
 
     goPage = () => {
-        console.log(11)
-        window.open('https://github.com/LuoShengMen')
+        //console.log(11)
+        //window.open('https://github.com/LuoShengMen')
     };
 
     render() {
