@@ -23,8 +23,18 @@ import './stylesheets/index.js'; // 全局样式
 //import store from './store';
 // 第二种写法
 import {configureStore} from './store';
+import Cookies from "js-cookie";
 
 const store = configureStore();
+
+
+const validate = function (next, replace, callback) {
+    const isLoggedIn = !!Cookies.get('token');
+    if (!isLoggedIn) {
+        replace('/login');
+    }
+    callback();
+};
 
 const routes = (
     <Provider store={store}>
@@ -41,7 +51,7 @@ const routes = (
                 </Route>
                 <Route path="login" component={Login}/>
                 <Route path="404" component={ErrorPage}/>
-                <Route path="home" component={Home}>
+                <Route path="home" component={Home} onEnter={validate}>
                     <IndexRedirect to='/home/newArticle'/>
                     <Route path="resume" component={Resume}/>
                     <Route path="articleMge" component={ArticleManage}/>

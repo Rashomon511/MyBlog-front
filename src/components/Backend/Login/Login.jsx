@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Icon, Input, Button} from 'antd';
-import Cookies from 'js-cookie';
 import style from './Login.less';
 
 const FormItem = Form.Item;

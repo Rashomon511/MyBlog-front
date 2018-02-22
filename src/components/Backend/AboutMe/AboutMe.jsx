@@ -11,6 +11,10 @@ class AboutMe extends React.Component {
         this.state = {editorHtml: '',}
     }
 
+    componentWillMount(){
+
+    }
+
     componentDidMount(){
         const { requestResume } = this.props;
         requestResume();
