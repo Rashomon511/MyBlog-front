@@ -3,13 +3,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     entry: {
         client: path.resolve(__dirname, 'src/index'),
-        vendor: ['babel-polyfill', 'react', 'react-dom', 'react-redux', 'react-router', 'redux', 'redux-persist', 'redux-thunk']
+        vendor: ['babel-polyfill', 'react', 'react-dom', 'react-redux', 'react-router', 'redux', 'redux-persist','redux-saga','react-quill']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -47,24 +48,25 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\""
+                    fallback: "style-loader",
+                    use: "css-loader?modules,localIdentName=\"[name]-[local]-[hash:base64:6]\"!less-loader?sourceMap=true",
                 }),
                 exclude: /node_modules/
-            },//加载less
+            },
             {
                 test: /\.css$/,
-                include: /node_modules/,
                 loader:'style-loader!css-loader'
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: ['file-loader']
             },//加载字体
-        ]
+
+        ],
+        noParse: /node_modules\/quill\/dist/
     },
     resolve: {
-        extensions: ['.js', '.json', '.jsx']
+        extensions: ['.js', '.json', '.jsx', '.less']
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
@@ -81,12 +83,20 @@ module.exports = {
             name: "vendor",
             minChunks: Infinity,
         }),
+        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'public/index.html'
         }),
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin('style.css', { allChunks: true }),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new ProgressBarPlugin()
     ],
+    node: {
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+    },
     target: 'web'
 };
