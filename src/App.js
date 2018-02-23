@@ -6,7 +6,7 @@ class App extends Component{
         return (
             <div className={style.app}>
                 {this.props.children}
-            </div>
+            </div> 
         );
     }
 }
