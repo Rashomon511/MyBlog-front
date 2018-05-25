@@ -14,13 +14,13 @@
 
 ```
 |-src  					//开发
-|----action  			    //action
-|----accest  			    //静态资源
-|----components  		  //ui组件
-|----config  			    //编辑器配置
+|----action  	 //action
+|----accest  	 //静态资源
+|----components //ui组件
+|----config    //编辑器配置
 |----controllers      //容器组件
-|----reducer  		    //reducer
-|----saga  			      //saga
+|----reducer  //reducer
+|----saga  	//saga
 |----store            //状态管理
 |----stylesheets      //样式
 |----utils            // axios——http插件
