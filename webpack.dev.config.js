@@ -11,7 +11,7 @@ module.exports = {
     entry: ['babel-polyfill',path.resolve(__dirname, './src/index.js')],//打包入口文件
     output: {
         filename: 'bundle.js', //文件名
-        path: path.resolve(__dirname, 'dist'), //输出路劲
+        path: path.resolve(__dirname, 'dist'), //输出路径
         publicPath: "/"
     },//打包输出文件
     devServer: {
