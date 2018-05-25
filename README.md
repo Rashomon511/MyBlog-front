@@ -5,7 +5,8 @@
 
 >blog前端由webpack+react+react-router+redux-saga技术栈实现。前端页面：[rashomon.codehao.com](http://rashomon.codehao.com/)
 
->后台由express+mongodb实现,[项目地址](https://github.com/LuoShengMen/MyBlog-end)。 后台管理页面：[rashomon.codehao.com/#/login](http://rashomon.codehao.com/#/login)
+>后台由express+mongodb实现,[后台项目地址](https://github.com/LuoShengMen/MyBlog-end)。 后台管理页面：[rashomon.codehao.com/#/login](http://rashomon.codehao.com/#/login)
+
 
 
 
@@ -13,16 +14,16 @@
 
 ```
 |-src  					//开发
-|----action  			       //action
-|----accest  			       //静态资源
-|----components  		     //ui组件
-|----config  			       //编辑器配置
-|----controllers         //容器组件
-|----reducer  		       //reducer
-|----saga  			         //saga
-|----store               //状态管理
-|----stylesheets         //样式
-|----utils               // axios——http插件
+|----action  			    //action
+|----accest  			    //静态资源
+|----components  		  //ui组件
+|----config  			    //编辑器配置
+|----controllers      //容器组件
+|----reducer  		    //reducer
+|----saga  			      //saga
+|----store            //状态管理
+|----stylesheets      //样式
+|----utils            // axios——http插件
 |----App.js              
 |----index.js            //项目启动文件
 |-package.json           //项目配置
