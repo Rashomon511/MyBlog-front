@@ -3,9 +3,9 @@
 ## 为啥写这个??
 > 当然是看别人写了个，那我觉得我自己应该也能写一个，那就动手咯！好吧！其实主要是为了学习使用webpack配置和react-saga的使用.
 
->blog前端由webpack+react+react-router+redux-saga技术栈实现。前端页面：rashomon.codehao.com(http://rashomon.codehao.com/)
+>blog前端由webpack+react+react-router+redux-saga技术栈实现。前端页面：[rashomon.codehao.com](http://rashomon.codehao.com/)
 
->后台由express+mongodb实现,地址[https://github.com/LuoShengMen/MyBlog-end]。 后台管理页面：rashomon.codehao.com/#/login(http://rashomon.codehao.com/#/login)
+>后台由express+mongodb实现,[项目地址](https://github.com/LuoShengMen/MyBlog-end)。 后台管理页面：[rashomon.codehao.com/#/login](http://rashomon.codehao.com/#/login)
 
 
 
