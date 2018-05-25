@@ -7,6 +7,8 @@
 
 >后台由express+mongodb实现,[后台项目地址](https://github.com/LuoShengMen/MyBlog-end)。 后台管理页面：[rashomon.codehao.com/#/login](http://rashomon.codehao.com/#/login)
 
+>可能还有不少问题，请大佬们轻喷，可以联系我qq:1075843579
+
 
 
 
