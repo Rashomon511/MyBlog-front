@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "inst": "npm install",
+        "install": "npm install",
         "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config",
-        "prod": "cross-env NODE_ENV=production webpack --config webpack.prod.config"
+        "pro": "cross-env NODE_ENV=production webpack --config webpack.prod.config"
     },
     "author": "WH",
     "license": "MIT",
