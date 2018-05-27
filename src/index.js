@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {Router, Route, IndexRedirect, hashHistory} from 'react-router';
+import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import App from './App';
 import Index from './components/Blog/index'; // 博客展示页面
 import Tags from './containers/Blog/Tags'; // 博客展示标签页面
@@ -38,7 +38,7 @@ const validate = function (next, replace, callback) {
 
 const routes = (
     <Provider store={store}>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRedirect to='/main' />
                 <Route path='main' component={Index}>
