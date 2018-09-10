@@ -46,4 +46,4 @@ npm run dev
 # build for production with minification
 npm run pro
 ```
-更多内容，欢迎关注[blog](http://hexo.codehao.com/)
+更多内容，欢迎关注[blog](http://codehao.com/)
